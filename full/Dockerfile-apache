@@ -1,0 +1,27 @@
+FROM ubuntu:18.04
+MAINTAINER schtr4jh@schtr4jh.net
+
+# add utils so we can optimize a few things
+COPY utils /usr/local/pckg-utils/
+
+# Update system, install common
+RUN sh /usr/local/pckg-utils/initialUpdate.sh
+
+# worker = php + apache + mysql
+RUN sh /usr/local/pckg-utils/installWeb.sh
+
+# copy apache config
+RUN sh /usr/local/pckg-utils/configApache.sh
+
+# composer + node + npm + yarn + less + webpack
+RUN sh /usr/local/pckg-utils/installFrontend.sh
+
+# cleanup
+RUN rm -rf /var/lib/apt/lists/* /usr/local/pckg-utils
+
+# open ports
+EXPOSE 80 443
+
+# entrypoint
+COPY docker-entrypoint-apache.sh /
+ENTRYPOINT ["sh", "/docker-entrypoint-apache.sh"]

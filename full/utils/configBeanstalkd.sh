@@ -1,0 +1,1 @@
+# cp /usr/local/pckg-utils/external/rabbitmq-server /etc/default/rabbitmq-server

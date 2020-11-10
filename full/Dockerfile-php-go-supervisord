@@ -1,0 +1,11 @@
+FROM schtr4jh/private:php-go
+MAINTAINER schtr4jh@schtr4jh.net
+
+# supervisord
+RUN apt-get update && apt-get install -y supervisor
+
+# cleanup
+RUN rm -rf /var/lib/apt/lists/* /usr/local/pckg-utils
+
+COPY docker-entrypoint-php-go-supervisord.sh /
+ENTRYPOINT ["sh", "/docker-entrypoint-php-go-supervisord.sh"]

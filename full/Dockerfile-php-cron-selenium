@@ -1,0 +1,50 @@
+FROM ubuntu:18.04
+MAINTAINER schtr4jh@schtr4jh.net
+
+# add utils so we can optimize a few things
+COPY utils /usr/local/pckg-utils/
+
+# Update system, install common
+RUN sh /usr/local/pckg-utils/initialUpdate.sh
+
+# worker = php + mysql client
+RUN sh /usr/local/pckg-utils/installWeb-cron.sh
+
+# worker = php + mysql client
+RUN sh /usr/local/pckg-utils/installSelenium.sh
+
+# cleanup
+RUN rm -rf /var/lib/apt/lists/* /usr/local/pckg-utils
+
+RUN apt-get update && \
+    apt-get -qq -y install  libxpm4 libxrender1 libgtk2.0-0 libnss3\
+       libgconf-2-4  libpango1.0-0 libxss1 libxtst6 fonts-liberation\
+       libappindicator1 xdg-utils
+
+RUN apt-get -y install \
+               xvfb gtk2-engines-pixbuf \
+               xfonts-cyrillic xfonts-100dpi xfonts-75dpi xfonts-base xfonts-scalable \
+               imagemagick x11-apps zip
+
+# install google chrome
+#RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
+#RUN sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
+#RUN apt-get -y update
+#RUN apt-get install -y google-chrome-stable
+
+# install chromedriver
+#RUN apt-get install -yqq unzip
+#RUN wget -O /tmp/chromedriver.zip http://chromedriver.storage.googleapis.com/`curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE`/chromedriver_linux64.zip
+#RUN unzip /tmp/chromedriver.zip chromedriver -d /usr/local/bin/
+
+# set display port to avoid crash
+#ENV DISPLAY=:99
+
+#RUN apt-get install default-jdk -y
+
+# install selenium
+# RUN pip install selenium==3.8.0
+
+# entrypoint
+COPY docker-entrypoint-php-cron-selenium.sh /
+ENTRYPOINT ["sh", "/docker-entrypoint-php-cron-selenium.sh"]

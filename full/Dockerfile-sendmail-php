@@ -1,0 +1,27 @@
+FROM ubuntu:18.04
+MAINTAINER schtr4jh@schtr4jh.net
+
+# add utils so we can optimize a few things
+COPY utils /usr/local/pckg-utils/
+
+# Update system, install common
+RUN sh /usr/local/pckg-utils/initialUpdate.sh
+
+# worker = php + mysql client
+RUN sh /usr/local/pckg-utils/installWeb-cron.sh
+
+#
+RUN apt-get install -q -y rsyslog
+
+# worker = sendmail + opendkim
+RUN sh /usr/local/pckg-utils/installSendmail.sh
+
+# configure sendmail + opendkim
+RUN sh /usr/local/pckg-utils/configSendmail.sh
+
+# cleanup
+RUN rm -rf /var/lib/apt/lists/*
+
+# entrypoint
+COPY docker-entrypoint-sendmail-php.sh /
+ENTRYPOINT ["sh", "/docker-entrypoint-sendmail-php.sh"]

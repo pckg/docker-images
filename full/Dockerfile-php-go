@@ -1,0 +1,26 @@
+FROM ubuntu:18.04
+MAINTAINER schtr4jh@schtr4jh.net
+
+# add utils so we can optimize a few things
+COPY utils /usr/local/pckg-utils/
+
+# Update system, install common
+RUN sh /usr/local/pckg-utils/initialUpdate.sh
+
+# worker = php + mysql client
+RUN sh /usr/local/pckg-utils/installWeb-cron.sh
+
+# go
+RUN apt-get install golang golang-go -y
+
+# cleanup
+RUN rm -rf /var/lib/apt/lists/* /usr/local/pckg-utils
+
+RUN export GOPATH=/var/www/html
+RUN export GOBIN=$GOPATH/bin
+RUN PATH=$PATH:$GOPATH:$GOBIN
+RUN export PATH
+
+# entrypoint
+COPY docker-entrypoint-php-go.sh /
+ENTRYPOINT ["sh", "/docker-entrypoint-php-go.sh"]
