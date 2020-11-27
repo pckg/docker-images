@@ -1,0 +1,29 @@
+FROM ubuntu:20.04
+MAINTAINER bojan@comms.dev
+
+# add utils so we can optimize a few things
+COPY utils /usr/local/pckg-utils
+
+# Update system, install common
+RUN sh /usr/local/pckg-utils/initialUpdate.sh
+
+# node + npm + yarn + less + webpack
+RUN sh /usr/local/pckg-utils/installBasicFrontend.sh
+
+# create dev user
+RUN sh /usr/local/pckg-utils/addDeveloper.sh
+
+# change workdir for a developer
+# USER developer
+WORKDIR /var/www/html/
+
+# install hub requirements
+COPY commsdev/hub-dev /usr/local/commsdev-utils
+RUN sh /usr/local/commsdev-utils/installHub.sh
+
+# cleanup
+RUN rm -rf /var/lib/apt/lists/* /usr/local/pckg-utils /usr/local/commsdev-utils
+
+# entrypoint
+COPY docker-entrypoint-commsdev-hub-dev.sh /
+ENTRYPOINT ["sh", "/docker-entrypoint-commsdev-hub-dev.sh"]

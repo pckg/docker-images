@@ -1,0 +1,1 @@
+webpack --config=../webpack.config.js --env SHARE_VENDOR=$1 --env SHARE_TYPE=$2 --env SHARE=$3
