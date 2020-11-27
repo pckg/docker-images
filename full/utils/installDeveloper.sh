@@ -4,12 +4,7 @@ wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - 
 # iproute
 
 # add user
-useradd -ms /bin/bash developer
-adduser developer sudo
-
-# allow writing
-usermod -G developer www-data
-usermod -a -G www-data developer
+sh /usr/local/pckg-utils/addDeveloper.sh
 
 # bitbucket and github
 mkdir -p /root/.ssh
