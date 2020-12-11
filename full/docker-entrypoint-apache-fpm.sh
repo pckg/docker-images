@@ -20,6 +20,10 @@ chown -R www-data:www-data /var/www/html/storage
 
 mkdir -p /var/run/apache2
 
+# enable redis session
+echo "session.save_handler = redis" >> /etc/php/7.4/fpm/php.ini
+echo "session.save_path = \"tcp://cache-server:6379?auth="${REDIS_PASS}"\"" >> /etc/php/7.4/fpm/php.ini
+
 service php7.4-fpm start
 
 /usr/sbin/apache2 -D FOREGROUND
