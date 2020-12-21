@@ -36,7 +36,7 @@ WORKDIR /var/www/html/
 RUN rm -rf /var/lib/apt/lists/* /usr/local/pckg-utils
 
 # open ports
-EXPOSE 80 443
+# EXPOSE 80 443
 
 # entrypoint
 COPY docker-entrypoint.sh /

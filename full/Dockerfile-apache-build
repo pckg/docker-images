@@ -21,6 +21,6 @@ RUN apt-get update \
 	&& sh /usr/local/pckg-utils/installLess.sh \
 	&& sh /usr/local/pckg-utils/installWebpack.sh \
 	&& rm -rf /var/lib/apt/lists/* /usr/local/pckg-utils
-EXPOSE 80 443
+# EXPOSE 80 443
 COPY docker-entrypoint-apache.sh /
 ENTRYPOINT ["sh", "/docker-entrypoint-apache.sh"]
