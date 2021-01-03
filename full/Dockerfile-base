@@ -5,7 +5,7 @@ MAINTAINER schtr4jh@schtr4jh.net
 COPY utils /usr/local/pckg-utils/
 
 # Update system, install common
-RUN sh /usr/local/pckg-utils/initialUpdate.sh && rm -rf /var/lib/apt/lists/*
+RUN sh /usr/local/pckg-utils/initialUpdate.sh
 
 # entrypoint
 ENTRYPOINT ["date"]
