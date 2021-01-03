@@ -1,4 +1,4 @@
-FROM schtr4jh/private:php-go
+FROM schtr4jh/pckg:php-go
 MAINTAINER schtr4jh@schtr4jh.net
 
 # supervisord

@@ -1,11 +1,5 @@
-FROM ubuntu:20.04
-MAINTAINER bojan@comms.dev
-
-# add utils so we can optimize a few things
-COPY utils /usr/local/pckg-utils
-
-# Update system, install common
-RUN sh /usr/local/pckg-utils/initialUpdate.sh
+FROM schtr4jh/pckg:base
+MAINTAINER schtr4jh@schtr4jh.net
 
 # node + npm + yarn + less + webpack
 RUN sh /usr/local/pckg-utils/installBasicFrontend.sh

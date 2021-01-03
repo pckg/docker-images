@@ -1,11 +1,5 @@
-FROM ubuntu:20.04
+FROM schtr4jh/pckg:base
 MAINTAINER schtr4jh@schtr4jh.net
-
-# add utils so we can optimize a few things
-COPY utils /usr/local/pckg-utils/
-
-# Update system, install common
-RUN sh /usr/local/pckg-utils/initialUpdate.sh
 
 # worker = php + apache + mysql
 RUN sh /usr/local/pckg-utils/installWeb.sh
