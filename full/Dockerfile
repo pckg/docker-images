@@ -22,15 +22,15 @@ RUN sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/
 RUN sudo apt-get update && sudo apt-get install -y docker-ce docker-ce-cli containerd.io
 #RUN sudo systemctl enable --now docker
 
-# change workdir for a developer
-# USER developer
-WORKDIR /var/www/html/
-
 # cleanup
 RUN rm -rf /var/lib/apt/lists/* /usr/local/pckg-utils
 
 # open ports
 # EXPOSE 80 443
+
+# change workdir for a developer
+# USER developer
+WORKDIR /var/www/html/
 
 # entrypoint
 COPY docker-entrypoint.sh /

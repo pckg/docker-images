@@ -18,6 +18,9 @@ RUN sh /usr/local/commsdev-utils/installHub.sh
 # cleanup
 RUN rm -rf /var/lib/apt/lists/* /usr/local/pckg-utils /usr/local/commsdev-utils
 
+# change workdir for a developer
+WORKDIR /var/www/html/
+
 # entrypoint
 COPY docker-entrypoint-commsdev-hub-dev.sh /
 ENTRYPOINT ["sh", "/docker-entrypoint-commsdev-hub-dev.sh"]

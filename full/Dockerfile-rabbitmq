@@ -5,7 +5,7 @@ MAINTAINER schtr4jh@schtr4jh.net
 RUN sh /usr/local/pckg-utils/installRabbitMQ.sh
 
 # config rabbitmq
-RUN sh /usr/local/pckg-utils/installRabbitMQ.sh
+RUN sh /usr/local/pckg-utils/configRabbitMQ.sh
 
 # cleanup
 RUN rm -rf /var/lib/apt/lists/* /usr/local/pckg-utils

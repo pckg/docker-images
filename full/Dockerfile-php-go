@@ -15,6 +15,9 @@ RUN export GOBIN=$GOPATH/bin
 RUN PATH=$PATH:$GOPATH:$GOBIN
 RUN export PATH
 
+# change workdir for a developer
+WORKDIR /var/www/html/
+
 # entrypoint
 COPY docker-entrypoint-php-go.sh /
 ENTRYPOINT ["sh", "/docker-entrypoint-php-go.sh"]

@@ -16,6 +16,9 @@ RUN sh /usr/local/pckg-utils/configSendmail.sh
 # cleanup
 RUN rm -rf /var/lib/apt/lists/*
 
+# change workdir for a developer
+WORKDIR /var/www/html/
+
 # entrypoint
 COPY docker-entrypoint-sendmail-php.sh /
 ENTRYPOINT ["sh", "/docker-entrypoint-sendmail-php.sh"]

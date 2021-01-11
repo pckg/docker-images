@@ -16,6 +16,9 @@ RUN rm -rf /var/lib/apt/lists/* /usr/local/pckg-utils
 # open ports
 # EXPOSE 80 443
 
+# change workdir for a developer
+WORKDIR /var/www/html/
+
 # entrypoint
 COPY docker-entrypoint-apache-fpm.sh /
 ENTRYPOINT ["sh", "/docker-entrypoint-apache-fpm.sh"]

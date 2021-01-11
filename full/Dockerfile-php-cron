@@ -7,6 +7,9 @@ RUN sh /usr/local/pckg-utils/installWeb-cron.sh
 # cleanup
 RUN rm -rf /var/lib/apt/lists/* /usr/local/pckg-utils
 
+# change workdir for a developer
+WORKDIR /var/www/html/
+
 # entrypoint
 COPY docker-entrypoint-php-cron.sh /
 ENTRYPOINT ["sh", "/docker-entrypoint-php-cron.sh"]

@@ -10,6 +10,9 @@ RUN sh /usr/local/pckg-utils/configApache.sh
 # composer + node + npm + yarn + less + webpack
 RUN sh /usr/local/pckg-utils/installFrontend.sh
 
+# change workdir for a developer
+WORKDIR /var/www/html/
+
 # cleanup
 RUN rm -rf /var/lib/apt/lists/* /usr/local/pckg-utils
 

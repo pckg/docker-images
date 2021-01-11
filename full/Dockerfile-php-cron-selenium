@@ -39,6 +39,9 @@ RUN apt-get -y install \
 # install selenium
 # RUN pip install selenium==3.8.0
 
+# change workdir for a developer
+WORKDIR /var/www/html/
+
 # entrypoint
 COPY docker-entrypoint-php-cron-selenium.sh /
 ENTRYPOINT ["sh", "/docker-entrypoint-php-cron-selenium.sh"]

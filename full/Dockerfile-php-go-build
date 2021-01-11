@@ -15,5 +15,6 @@ RUN apt-get update \
 	&& export GOBIN=$GOPATH/bin \
 	&& PATH=$PATH:$GOPATH:$GOBIN \
 	&& export PATH
+WORKDIR /var/www/html/
 COPY docker-entrypoint-php-go.sh /
 ENTRYPOINT ["sh", "/docker-entrypoint-php-go.sh"]
