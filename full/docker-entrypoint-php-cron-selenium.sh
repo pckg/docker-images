@@ -14,7 +14,8 @@ fi
 #echo "Waiting 5s"
 #sleep 5
 
-chown -R www-data:www-data /var/www/html/
+# chown storage when existent
+[ -d "/var/www/html/storage" ] && chown -R www-data:www-data /var/www/html/storage
 
 echo "Running $JOB"
 php /var/www/html/$JOB

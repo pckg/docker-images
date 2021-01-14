@@ -16,7 +16,8 @@ export APACHE_LOG_DIR=/var/log/apache2$SUFFIX
 export LANG=C
 export LANG
 
-chown -R www-data:www-data /var/www/html/storage
+# chown storage when existent
+[ -d "/var/www/html/storage" ] && chown -R www-data:www-data /var/www/html/storage
 
 mkdir -p /var/run/apache2
 
