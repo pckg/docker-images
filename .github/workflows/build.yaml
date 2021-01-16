@@ -21,8 +21,8 @@ jobs:
       - name: Build
         run: "cd full && docker build -t schtr4jh/pckg:base -f Dockerfile-base-build ."
 
-      - name: Push
-        run: "cd full && docker push schtr4jh/pckg:base"
+      #- name: Push
+      #  run: "cd full && docker push schtr4jh/pckg:base"
 
   build-apache:
     name: Build Apache
@@ -40,8 +40,8 @@ jobs:
       - name: Build
         run: "cd full && docker build -t schtr4jh/pckg:apache -f Dockerfile-apache-build ."
 
-      - name: Push
-        run: "docker push schtr4jh/pckg:apache"
+      #- name: Push
+      #  run: "docker push schtr4jh/pckg:apache"
 
   build-apache-fpm:
     name: Build Apache FPM
@@ -57,10 +57,10 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Build
-        run: "cd full && docker build -t schtr4jh/pckg:apache-fpm -f Dockerfile-apache-fpm-build ."
+        run: "cd full && docker build -t schtr4jh/pckg:apache-fpm-alpine -f Dockerfile-apache-fpm-build ."
 
-      - name: Push
-        run: "docker push schtr4jh/pckg:apache-fpm-alpine"
+      #- name: Push
+      #  run: "docker push schtr4jh/pckg:apache-fpm-alpine"
 
   build-beanstalkd:
     name: Build Beanstalkd
@@ -76,7 +76,121 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Build
-        run: "cd full && docker build -t schtr4jh/pckg:beanstalkd-alpine -f Dockerfile-apache-beanstalkd-build ."
+        run: "cd full && docker build -t schtr4jh/pckg:beanstalkd-alpine -f Dockerfile-beanstalkd-build ."
 
-      - name: Push
-        run: "docker push schtr4jh/pckg:beanstalkd-alpine"
+      #- name: Push
+      #  run: "docker push schtr4jh/pckg:beanstalkd-alpine"
+
+  build-rabbitmq:
+    name: Build RabbitMQ
+    needs: [ build-base ]
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: true
+      matrix:
+        php-versions: [ '7.4' ]
+    steps:
+
+      - uses: actions/checkout@v2
+
+      - name: Build
+        run: "cd full && docker build -t schtr4jh/pckg:rabbitmq-alpine -f Dockerfile-rabbitmq-build ."
+
+      #- name: Push
+      #  run: "docker push schtr4jh/pckg:rabbitmq-alpine"
+
+  build-redis:
+    name: Build Redis
+    needs: [ build-base ]
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: true
+      matrix:
+        php-versions: [ '7.4' ]
+    steps:
+
+      - uses: actions/checkout@v2
+
+      - name: Build
+        run: "cd full && docker build -t schtr4jh/pckg:redis-alpine -f Dockerfile-redis-build ."
+
+      #- name: Push
+      #  run: "docker push schtr4jh/pckg:redis-alpine"
+
+  build-sendmail:
+    name: Build Sendmail
+    needs: [ build-base ]
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: true
+      matrix:
+        php-versions: [ '7.4' ]
+    steps:
+
+      - uses: actions/checkout@v2
+
+      - name: Build
+        run: "cd full && docker build -t schtr4jh/pckg:sendmail-php -f Dockerfile-sendmail-php-build ."
+
+      #- name: Push
+      #  run: "docker push schtr4jh/pckg:sendmail-php"
+
+  build-php:
+    name: Build PHP
+    needs: [ build-base ]
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: true
+      matrix:
+        php-versions: [ '7.4' ]
+    steps:
+
+      - uses: actions/checkout@v2
+
+      - name: Build
+        run: "cd full && docker build -t schtr4jh/pckg:php-cron -f Dockerfile-php-cron-build ."
+
+      #- name: Push
+      #  run: "docker push schtr4jh/pckg:php-cron"
+
+  build-go:
+    name: Build PHP Go
+    needs: [ build-base ]
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: true
+      matrix:
+        php-versions: [ '7.4' ]
+    steps:
+
+      - uses: actions/checkout@v2
+
+      - name: Build
+        run: "cd full && docker build -t schtr4jh/pckg:php-go-alpine -f Dockerfile-php-go-build ."
+
+      #- name: Push
+      #  run: "docker push schtr4jh/pckg:php-go-alpine"
+
+  build-go-supervisor:
+    name: Build PHP Go
+    needs: [ build-base ]
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: true
+      matrix:
+        php-versions: [ '7.4' ]
+    steps:
+
+      - uses: actions/checkout@v2
+
+      - name: Build
+        run: "cd full && docker build -t schtr4jh/pckg:php-go-supervisord-alpine -f Dockerfile-php-go-supervisord-build ."
+
+      #- name: Push
+      #  run: "docker push schtr4jh/pckg:php-go-supervisord-alpine"
