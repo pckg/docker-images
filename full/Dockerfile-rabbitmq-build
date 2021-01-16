@@ -1,7 +1,7 @@
 FROM schtr4jh/pckg:base
 MAINTAINER schtr4jh@schtr4jh.net
-RUN cp -R utils /usr/local/pckg-utils \
-	&& sudo apt-get install -y rabbitmq-server \
+COPY utils /usr/local/pckg-utils/
+RUN sudo apt-get install -y rabbitmq-server \
 	&& cp /usr/local/pckg-utils/external/rabbitmq-server /etc/default/rabbitmq-server \
 	&& rm -rf /var/lib/apt/lists/* \
 	&& rm -rf /usr/local/pckg-utils

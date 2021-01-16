@@ -2,7 +2,8 @@ FROM schtr4jh/pckg:base
 MAINTAINER schtr4jh@schtr4jh.net
 
 # add utils so we can optimize a few things
-RUN cp -R utils /usr/local/pckg-utils
+COPY utils /usr/local/pckg-utils/
+#RUN cp -R utils /usr/local/pckg-utils
 
 # backend services = lsyncd + redis server + rabbitmq server + mysql server + openvpn
 RUN sh /usr/local/pckg-utils/installBackend.sh

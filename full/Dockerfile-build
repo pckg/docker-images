@@ -1,7 +1,7 @@
 FROM schtr4jh/pckg:base
 MAINTAINER schtr4jh@schtr4jh.net
-RUN cp -R utils /usr/local/pckg-utils \
-	&& sudo apt-get install -y lsyncd redis-server rabbitmq-server mysql-server \
+COPY utils /usr/local/pckg-utils/
+RUN sudo apt-get install -y lsyncd redis-server rabbitmq-server mysql-server \
 	&& add-apt-repository ppa:ondrej/php \
 	&& add-apt-repository ppa:ondrej/apache2 \
 	&& apt-get update \
