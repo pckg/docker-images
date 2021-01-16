@@ -21,7 +21,7 @@ jobs:
       - uses: satackey/action-docker-layer-caching@v0.0.11
 
       - name: Build
-        run: "cd full && docker build -t schtr4jh/pckg:base -f Dockerfile-base-build ."
+        run: "cd full && docker build -t registry.hub.docker.com/schtr4jh/pckg:base -f Dockerfile-base-build ."
 
       - name: Dump DO Registry auth
         env:
@@ -48,7 +48,7 @@ jobs:
       - uses: satackey/action-docker-layer-caching@v0.0.11
 
       - name: Build
-        run: "cd full && docker build -t schtr4jh/pckg:apache-alpine -f Dockerfile-apache-build ."
+        run: "cd full && docker build -t registry.hub.docker.com/schtr4jh/pckg:apache-alpine -f Dockerfile-apache-build ."
 
       - name: Dump DO Registry auth
         env:
@@ -75,7 +75,7 @@ jobs:
       - uses: satackey/action-docker-layer-caching@v0.0.11
 
       - name: Build
-        run: "cd full && docker build -t schtr4jh/pckg:apache-fpm-alpine -f Dockerfile-apache-fpm-build ."
+        run: "cd full && docker build -t registry.hub.docker.com/schtr4jh/pckg:apache-fpm-alpine -f Dockerfile-apache-fpm-build ."
 
       - name: Dump DO Registry auth
         env:
@@ -102,7 +102,7 @@ jobs:
       - uses: satackey/action-docker-layer-caching@v0.0.11
 
       - name: Build
-        run: "cd full && docker build -t schtr4jh/pckg:beanstalkd-alpine -f Dockerfile-beanstalkd-build ."
+        run: "cd full && docker build -t registry.hub.docker.com/schtr4jh/pckg:beanstalkd-alpine -f Dockerfile-beanstalkd-build ."
 
       - name: Dump DO Registry auth
         env:
@@ -129,7 +129,7 @@ jobs:
 #      - uses: satackey/action-docker-layer-caching@v0.0.11
 #
 #      - name: Build
-#        run: "cd full && docker build -t schtr4jh/pckg:rabbitmq-alpine -f Dockerfile-rabbitmq-build ."
+#        run: "cd full && docker build -t registry.hub.docker.com/schtr4jh/pckg:rabbitmq-alpine -f Dockerfile-rabbitmq-build ."
 #
 #      - name: Dump DO Registry auth
 #        env:
@@ -156,7 +156,7 @@ jobs:
 #      - uses: satackey/action-docker-layer-caching@v0.0.11
 #
 #      - name: Build
-#        run: "cd full && docker build -t schtr4jh/pckg:redis-alpine -f Dockerfile-redis-build ."
+#        run: "cd full && docker build -t registry.hub.docker.com/schtr4jh/pckg:redis-alpine -f Dockerfile-redis-build ."
 #
 #      - name: Dump DO Registry auth
 #        env:
@@ -183,7 +183,7 @@ jobs:
       - uses: satackey/action-docker-layer-caching@v0.0.11
 
       - name: Build
-        run: "cd full && docker build -t schtr4jh/pckg:sendmail-php -f Dockerfile-sendmail-php-build ."
+        run: "cd full && docker build -t registry.hub.docker.com/schtr4jh/pckg:sendmail-php -f Dockerfile-sendmail-php-build ."
 
       - name: Dump DO Registry auth
         env:
@@ -210,7 +210,7 @@ jobs:
       - uses: satackey/action-docker-layer-caching@v0.0.11
 
       - name: Build
-        run: "cd full && docker build -t schtr4jh/pckg:php-cron -f Dockerfile-php-cron-build ."
+        run: "cd full && docker build -t registry.hub.docker.com/schtr4jh/pckg:php-cron -f Dockerfile-php-cron-build ."
 
       - name: Dump DO Registry auth
         env:
@@ -237,7 +237,7 @@ jobs:
       - uses: satackey/action-docker-layer-caching@v0.0.11
 
       - name: Build
-        run: "cd full && docker build -t schtr4jh/pckg:php-go-alpine -f Dockerfile-php-go-build ."
+        run: "cd full && docker build -t registry.hub.docker.com/schtr4jh/pckg:php-go-alpine -f Dockerfile-php-go-build ."
 
       - name: Dump DO Registry auth
         env:
@@ -264,7 +264,7 @@ jobs:
       - uses: satackey/action-docker-layer-caching@v0.0.11
 
       - name: Build
-        run: "cd full && docker build -t schtr4jh/pckg:php-go-supervisord-alpine -f Dockerfile-php-go-supervisord-build ."
+        run: "cd full && docker build -t registry.hub.docker.com/schtr4jh/pckg:php-go-supervisord-alpine -f Dockerfile-php-go-supervisord-build ."
 
       - name: Dump DO Registry auth
         env:
