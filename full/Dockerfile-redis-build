@@ -1,7 +1,8 @@
 FROM schtr4jh/pckg:base
 MAINTAINER schtr4jh@schtr4jh.net
 COPY utils /usr/local/pckg-utils/
-RUN sudo apt-get install -y redis-server \
+RUN sudo apt-get -y update \
+	&& sudo apt-get install -y redis-server \
 	&& rm -rf /var/lib/apt/lists/* \
 	&& rm -rf /usr/local/pckg-utils
 COPY docker-entrypoint-redis.sh /

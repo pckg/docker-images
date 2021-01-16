@@ -1,10 +1,11 @@
 FROM schtr4jh/pckg:base
 MAINTAINER schtr4jh@schtr4jh.net
 COPY utils /usr/local/pckg-utils/
-RUN sudo apt-get install -y lsyncd redis-server rabbitmq-server mysql-server \
+RUN sudo apt-get -y update \
+	&& sudo apt-get install -y lsyncd redis-server rabbitmq-server mysql-server \
 	&& add-apt-repository ppa:ondrej/php \
 	&& add-apt-repository ppa:ondrej/apache2 \
-	&& apt-get update \
+	&& sudo apt-get -y update \
 	&& apt-get install -y apache2 libapache2-mod-php php7.4 php7.4-curl php7.4-intl php7.4-xml php7.4-mbstring php7.4-zip php7.4-mysql php7.4-cli php-amqplib php-ssh2 php7.4-zmq php7.4-imap php7.4-redis php7.4-bcmath php7.4-gd php7.4-bz2 php7.4-soap wget xvfb git zip unzip mysql-client \
 	&& cp /usr/local/pckg-utils/external/etc_apache2_apache2.conf /etc/apache2/apache2.conf \
 	&& cp /usr/local/pckg-utils/external/000-default.conf /etc/apache2/sites-enabled/000-default.conf \
@@ -14,6 +15,7 @@ RUN sudo apt-get install -y lsyncd redis-server rabbitmq-server mysql-server \
 	&& a2enmod expires headers rewrite ssl \
 	&& sh /usr/local/pckg-utils/installComposer.sh \
 	&& sh /usr/local/pckg-utils/installBasicFrontend.sh \
+	&& sudo apt-get -y update \
 	&& apt-get install -y iputils-ping nano net-tools zsh openvpn gcc g++ make build-essential \
 	&& wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh || true \
 	&& sh /usr/local/pckg-utils/addDeveloper.sh \

@@ -2,9 +2,10 @@ FROM schtr4jh/pckg:base
 MAINTAINER schtr4jh@schtr4jh.net
 COPY utils /usr/local/pckg-utils/
 RUN add-apt-repository ppa:ondrej/php \
-	&& apt-get update \
+	&& sudo apt-get -y update \
 	&& apt-get install -y mysql-client php7.4 php-curl php-intl php-xml php-mbstring php-zip php-mysql php-cli php-amqplib php-ssh2 php-zmq php-imap php-redis php-bcmath php-gd php-bz2 php-soap wget xvfb zip unzip \
 	&& apt-get install -q -y rsyslog \
+	&& sudo apt-get -y update \
 	&& sudo apt-get install -y sendmail opendkim opendkim-tools \
 	&& mkdir /etc/opendkim \
 	&& mkdir /etc/opendkim/keys \

@@ -1,4 +1,5 @@
 # bugfix?
+sudo apt-get -y update
 sudo apt-get install g++ build-essential -y
 
 # node + npm
