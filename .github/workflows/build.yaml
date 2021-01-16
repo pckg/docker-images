@@ -30,7 +30,7 @@ jobs:
         run: echo $DOCKER_HUB_AUTH_TOKEN | docker login registry.hub.docker.com --username $DOCKER_HUB_USER --password-stdin
 
       - name: Push
-        run: "cd full && docker push schtr4jh/pckg:base"
+        run: "docker push registry.hub.docker.com/schtr4jh/pckg:base"
 
   build-apache:
     name: Build Apache
@@ -57,7 +57,7 @@ jobs:
         run: echo $DOCKER_HUB_AUTH_TOKEN | docker login registry.hub.docker.com --username $DOCKER_HUB_USER --password-stdin
 
       - name: Push
-        run: "docker push schtr4jh/pckg:apache-alpine"
+        run: "docker push registry.hub.docker.com/schtr4jh/pckg:apache-alpine"
 
   build-apache-fpm:
     name: Build Apache FPM
@@ -84,7 +84,7 @@ jobs:
         run: echo $DOCKER_HUB_AUTH_TOKEN | docker login registry.hub.docker.com --username $DOCKER_HUB_USER --password-stdin
 
       - name: Push
-        run: "docker push schtr4jh/pckg:apache-fpm-alpine"
+        run: "docker push registry.hub.docker.com/schtr4jh/pckg:apache-fpm-alpine"
 
   build-beanstalkd:
     name: Build Beanstalkd
@@ -111,7 +111,7 @@ jobs:
         run: echo $DOCKER_HUB_AUTH_TOKEN | docker login registry.hub.docker.com --username $DOCKER_HUB_USER --password-stdin
 
       - name: Push
-        run: "docker push schtr4jh/pckg:beanstalkd-alpine"
+        run: "docker push registry.hub.docker.com/schtr4jh/pckg:beanstalkd-alpine"
 
 #  build-rabbitmq:
 #    name: Build RabbitMQ
@@ -138,7 +138,7 @@ jobs:
 #        run: echo $DOCKER_HUB_AUTH_TOKEN | docker login registry.hub.docker.com --username $DOCKER_HUB_USER --password-stdin
 #
 #      - name: Push
-#        run: "docker push schtr4jh/pckg:rabbitmq-alpine"
+#        run: "docker push registry.hub.docker.com/schtr4jh/pckg:rabbitmq-alpine"
 
 #  build-redis:
 #    name: Build Redis
@@ -165,7 +165,7 @@ jobs:
 #        run: echo $DOCKER_HUB_AUTH_TOKEN | docker login registry.hub.docker.com --username $DOCKER_HUB_USER --password-stdin
 #
 #      - name: Push
-#        run: "docker push schtr4jh/pckg:redis-alpine"
+#        run: "docker push registry.hub.docker.com/schtr4jh/pckg:redis-alpine"
 
   build-sendmail:
     name: Build Sendmail
@@ -192,7 +192,7 @@ jobs:
         run: echo $DOCKER_HUB_AUTH_TOKEN | docker login registry.hub.docker.com --username $DOCKER_HUB_USER --password-stdin
 
       - name: Push
-        run: "docker push schtr4jh/pckg:sendmail-php"
+        run: "docker push registry.hub.docker.com/schtr4jh/pckg:sendmail-php"
 
   build-php:
     name: Build PHP
@@ -219,7 +219,7 @@ jobs:
         run: echo $DOCKER_HUB_AUTH_TOKEN | docker login registry.hub.docker.com --username $DOCKER_HUB_USER --password-stdin
 
       - name: Push
-        run: "docker push schtr4jh/pckg:php-cron"
+        run: "docker push registry.hub.docker.com/schtr4jh/pckg:php-cron"
 
   build-go:
     name: Build PHP Go
@@ -246,7 +246,7 @@ jobs:
         run: echo $DOCKER_HUB_AUTH_TOKEN | docker login registry.hub.docker.com --username $DOCKER_HUB_USER --password-stdin
 
       - name: Push
-        run: "docker push schtr4jh/pckg:php-go-alpine"
+        run: "docker push registry.hub.docker.com/schtr4jh/pckg:php-go-alpine"
 
   build-go-supervisor:
     name: Build PHP Go Supervisor
@@ -273,4 +273,4 @@ jobs:
         run: echo $DOCKER_HUB_AUTH_TOKEN | docker login registry.hub.docker.com --username $DOCKER_HUB_USER --password-stdin
 
       - name: Push
-        run: "docker push schtr4jh/pckg:php-go-supervisord-alpine"
+        run: "docker push registry.hub.docker.com/schtr4jh/pckg:php-go-supervisord-alpine"
