@@ -6,17 +6,77 @@ on:
 
 jobs:
 
-  deploy:
-    name: Build
+  build-base:
+    name: Build base
     runs-on: ubuntu-latest
     timeout-minutes: 20
     strategy:
       fail-fast: true
       matrix:
-        php-versions: ['7.4']
+        php-versions: [ '7.4' ]
     steps:
 
       - uses: actions/checkout@v2
 
       - name: Build
         run: "cd full && docker build -t schtr4jh/pckg:base -f Dockerfile-base-build ."
+
+      - name: Push
+        run: "cd full && docker push schtr4jh/pckg:base"
+
+  build-apache:
+    name: Build Apache
+    needs: [ build-base ]
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: true
+      matrix:
+        php-versions: [ '7.4' ]
+    steps:
+
+      - uses: actions/checkout@v2
+
+      - name: Build
+        run: "cd full && docker build -t schtr4jh/pckg:apache -f Dockerfile-apache-build ."
+
+      - name: Push
+        run: "docker push schtr4jh/pckg:apache"
+
+  build-apache-fpm:
+    name: Build Apache FPM
+    needs: [ build-base ]
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: true
+      matrix:
+        php-versions: [ '7.4' ]
+    steps:
+
+      - uses: actions/checkout@v2
+
+      - name: Build
+        run: "cd full && docker build -t schtr4jh/pckg:apache-fpm -f Dockerfile-apache-fpm-build ."
+
+      - name: Push
+        run: "docker push schtr4jh/pckg:apache-fpm-alpine"
+
+  build-beanstalkd:
+    name: Build Beanstalkd
+    needs: [ build-base ]
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: true
+      matrix:
+        php-versions: [ '7.4' ]
+    steps:
+
+      - uses: actions/checkout@v2
+
+      - name: Build
+        run: "cd full && docker build -t schtr4jh/pckg:beanstalkd-alpine -f Dockerfile-apache-beanstalkd-build ."
+
+      - name: Push
+        run: "docker push schtr4jh/pckg:beanstalkd-alpine"
