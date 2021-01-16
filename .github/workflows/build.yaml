@@ -177,7 +177,7 @@ jobs:
       #  run: "docker push schtr4jh/pckg:php-go-alpine"
 
   build-go-supervisor:
-    name: Build PHP Go
+    name: Build PHP Go Supervisor
     needs: [ build-base ]
     runs-on: ubuntu-latest
     timeout-minutes: 20

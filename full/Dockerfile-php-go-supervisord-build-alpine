@@ -1,4 +1,4 @@
-FROM schtr4jh/pckg:php-go
+FROM schtr4jh/pckg:php-go-alpine
 MAINTAINER schtr4jh@schtr4jh.net
 COPY utils /usr/local/pckg-utils/
 RUN apk update && apk add supervisor \
