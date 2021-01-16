@@ -1,0 +1,22 @@
+name: Pckg Docker Images CI
+
+on:
+  workflow_dispatch:
+    branches: [ master ]
+
+jobs:
+
+  deploy:
+    name: Build
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: true
+      matrix:
+        php-versions: ['7.4']
+    steps:
+
+      - uses: actions/checkout@v2
+
+      - name: Build
+        run: "cd full && docker build -t schtr4jh/pckg:base -f Dockerfile-base-build ."
