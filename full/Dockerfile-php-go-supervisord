@@ -1,11 +1,11 @@
 FROM schtr4jh/pckg:php-go
 MAINTAINER schtr4jh@schtr4jh.net
 
+# add utils so we can optimize a few things
+RUN cp -R utils /usr/local/pckg-utils
+
 # supervisord
 RUN apt-get update && apt-get install -y supervisor
-
-# cleanup
-RUN rm -rf /var/lib/apt/lists/* /usr/local/pckg-utils
 
 # change workdir for a developer
 WORKDIR /var/www/html/

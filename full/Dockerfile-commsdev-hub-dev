@@ -16,7 +16,7 @@ COPY commsdev/hub-dev /usr/local/commsdev-utils
 RUN sh /usr/local/commsdev-utils/installHub.sh
 
 # cleanup
-RUN rm -rf /var/lib/apt/lists/* /usr/local/pckg-utils /usr/local/commsdev-utils
+#RUN rm -rf /var/lib/apt/lists/* /usr/local/pckg-utils /usr/local/commsdev-utils
 
 # change workdir for a developer
 WORKDIR /var/www/html/

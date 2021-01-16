@@ -4,13 +4,8 @@ RUN cp -R utils /usr/local/pckg-utils \
 	&& add-apt-repository ppa:ondrej/php \
 	&& apt-get update \
 	&& apt-get install -y mysql-client php7.4 php-curl php-intl php-xml php-mbstring php-zip php-mysql php-cli php-amqplib php-ssh2 php-zmq php-imap php-redis php-bcmath php-gd php-bz2 php-soap wget xvfb zip unzip \
-	&& apt-get install golang golang-go -y \
-	&& export GOPATH=/var/www/html \
-	&& export GOBIN=$GOPATH/bin \
-	&& PATH=$PATH:$GOPATH:$GOBIN \
-	&& export PATH \
 	&& rm -rf /var/lib/apt/lists/* \
 	&& rm -rf /usr/local/pckg-utils
 WORKDIR /var/www/html/
-COPY docker-entrypoint-php-go.sh /
-ENTRYPOINT ["sh", "/docker-entrypoint-php-go.sh"]
+COPY docker-entrypoint-php-cron.sh /
+ENTRYPOINT ["sh", "/docker-entrypoint-php-cron.sh"]

@@ -1,0 +1,9 @@
+FROM schtr4jh/pckg:php-go
+MAINTAINER schtr4jh@schtr4jh.net
+RUN cp -R utils /usr/local/pckg-utils \
+	&& apt-get update && apt-get install -y supervisor \
+	&& rm -rf /var/lib/apt/lists/* \
+	&& rm -rf /usr/local/pckg-utils
+WORKDIR /var/www/html/
+COPY docker-entrypoint-php-go-supervisord.sh /
+ENTRYPOINT ["sh", "/docker-entrypoint-php-go-supervisord.sh"]

@@ -1,6 +1,9 @@
 FROM schtr4jh/pckg:base
 MAINTAINER schtr4jh@schtr4jh.net
 
+# add utils so we can optimize a few things
+RUN cp -R utils /usr/local/pckg-utils
+
 # Install docker
 RUN sh /usr/local/pckg-utils/installDocker.sh
 
@@ -9,7 +12,7 @@ RUN sh /usr/local/pckg-utils/installDocker.sh
 WORKDIR /var/www/html/
 
 # cleanup
-RUN rm -rf /var/lib/apt/lists/* /usr/local/pckg-utils
+#RUN rm -rf /var/lib/apt/lists/* /usr/local/pckg-utils
 
 # entrypoint
 COPY docker-entrypoint-docker.sh /

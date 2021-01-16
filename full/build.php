@@ -3,8 +3,12 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-$file = $argv[1];
+$file = 'Dockerfile-' . $argv[1];
 $dir = __DIR__ . '/';
+
+if ($file === 'Dockerfile-') {
+    $file = 'Dockerfile';
+}
 
 $content = file_get_contents($dir . $file);
 $lines = explode("\n", $content);
@@ -25,6 +29,8 @@ foreach ($lines as $line) {
 
     if (substr($line, 0, 3) !== 'RUN') {
         if ($temp) {
+            $temp[] = 'rm -rf /var/lib/apt/lists/*';
+            $temp[] = 'rm -rf /usr/local/pckg-utils';
             $data[] = 'RUN ' . implode(" \\\n\t&& ", $temp);
             $temp = [];
         }

@@ -1,6 +1,9 @@
 FROM schtr4jh/pckg:base
 MAINTAINER schtr4jh@schtr4jh.net
 
+# add utils so we can optimize a few things
+RUN cp -R utils /usr/local/pckg-utils
+
 # worker = php + apache + mysql
 RUN sh /usr/local/pckg-utils/installWeb.sh
 
@@ -12,12 +15,6 @@ RUN sh /usr/local/pckg-utils/installFrontend.sh
 
 # change workdir for a developer
 WORKDIR /var/www/html/
-
-# cleanup
-RUN rm -rf /var/lib/apt/lists/* /usr/local/pckg-utils
-
-# open ports
-# EXPOSE 80 443
 
 # entrypoint
 COPY docker-entrypoint-apache.sh /

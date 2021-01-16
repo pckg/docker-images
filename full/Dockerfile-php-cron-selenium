@@ -1,6 +1,9 @@
 FROM schtr4jh/pckg:base
 MAINTAINER schtr4jh@schtr4jh.net
 
+# add utils so we can optimize a few things
+RUN cp -R utils /usr/local/pckg-utils
+
 # worker = php + mysql client
 RUN sh /usr/local/pckg-utils/installWeb-cron.sh
 
@@ -8,7 +11,7 @@ RUN sh /usr/local/pckg-utils/installWeb-cron.sh
 RUN sh /usr/local/pckg-utils/installSelenium.sh
 
 # cleanup
-RUN rm -rf /var/lib/apt/lists/* /usr/local/pckg-utils
+#RUN rm -rf /var/lib/apt/lists/* /usr/local/pckg-utils
 
 RUN apt-get update && \
     apt-get -qq -y install  libxpm4 libxrender1 libgtk2.0-0 libnss3\

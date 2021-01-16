@@ -1,6 +1,9 @@
 FROM schtr4jh/pckg:base
 MAINTAINER schtr4jh@schtr4jh.net
 
+# add utils so we can optimize a few things
+RUN cp -R utils /usr/local/pckg-utils
+
 # worker = php + mysql client
 RUN sh /usr/local/pckg-utils/installWeb-cron.sh
 
@@ -12,9 +15,6 @@ RUN sh /usr/local/pckg-utils/installSendmail.sh
 
 # configure sendmail + opendkim
 RUN sh /usr/local/pckg-utils/configSendmail.sh
-
-# cleanup
-RUN rm -rf /var/lib/apt/lists/*
 
 # change workdir for a developer
 WORKDIR /var/www/html/

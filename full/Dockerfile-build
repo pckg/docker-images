@@ -1,6 +1,7 @@
 FROM schtr4jh/pckg:base
 MAINTAINER schtr4jh@schtr4jh.net
 RUN cp -R utils /usr/local/pckg-utils \
+	&& sudo apt-get install -y lsyncd redis-server rabbitmq-server mysql-server \
 	&& add-apt-repository ppa:ondrej/php \
 	&& add-apt-repository ppa:ondrej/apache2 \
 	&& apt-get update \
@@ -13,8 +14,17 @@ RUN cp -R utils /usr/local/pckg-utils \
 	&& a2enmod expires headers rewrite ssl \
 	&& sh /usr/local/pckg-utils/installComposer.sh \
 	&& sh /usr/local/pckg-utils/installBasicFrontend.sh \
+	&& apt-get install -y iputils-ping nano net-tools zsh openvpn gcc g++ make build-essential \
+	&& wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh || true \
+	&& sh /usr/local/pckg-utils/addDeveloper.sh \
+	&& mkdir -p /root/.ssh \
+	&& echo "Host github.com\n\tStrictHostKeyChecking no\nHost bitbucket.org\n\tStrictHostKeyChecking no" >> /root/.ssh/config \
+	&& sh /usr/local/pckg-utils/copyCertificates.sh \
+	&& curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - \
+	&& sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" \
+	&& sudo apt-get update && sudo apt-get install -y docker-ce docker-ce-cli containerd.io \
 	&& rm -rf /var/lib/apt/lists/* \
 	&& rm -rf /usr/local/pckg-utils
 WORKDIR /var/www/html/
-COPY docker-entrypoint-apache.sh /
-ENTRYPOINT ["sh", "/docker-entrypoint-apache.sh"]
+COPY docker-entrypoint.sh /
+ENTRYPOINT ["sh", "/docker-entrypoint.sh"]

@@ -1,14 +1,14 @@
 FROM schtr4jh/pckg:base
 MAINTAINER schtr4jh@schtr4jh.net
 
+# add utils so we can optimize a few things
+RUN cp -R utils /usr/local/pckg-utils
+
 # worker = php + mysql client
 RUN sh /usr/local/pckg-utils/installWeb-cron.sh
 
 # go
 RUN apt-get install golang golang-go -y
-
-# cleanup
-RUN rm -rf /var/lib/apt/lists/* /usr/local/pckg-utils
 
 RUN export GOPATH=/var/www/html
 RUN export GOBIN=$GOPATH/bin
