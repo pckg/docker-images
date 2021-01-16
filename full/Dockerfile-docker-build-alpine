@@ -1,9 +1,9 @@
-FROM schtr4jh/pckg:base
+FROM schtr4jh/pckg:base-alpine
 MAINTAINER schtr4jh@schtr4jh.net
 COPY utils /usr/local/pckg-utils/
 RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - \
 	&& sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" \
-	&& sudo apt-get -y update && sudo apt-get install -y docker-ce docker-ce-cli containerd.io \
+	&& sudo apk update && sudo apk add docker-ce docker-ce-cli containerd.io \
 	&& rm -rf /var/lib/apt/lists/* \
 	&& rm -rf /usr/local/pckg-utils
 WORKDIR /var/www/html/

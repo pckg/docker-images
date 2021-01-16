@@ -1,12 +1,12 @@
-FROM schtr4jh/pckg:base
+FROM schtr4jh/pckg:base-alpine
 MAINTAINER schtr4jh@schtr4jh.net
 COPY utils /usr/local/pckg-utils/
-RUN sudo apt-get -y update \
-	&& sudo apt-get install -y lsyncd redis-server rabbitmq-server mysql-server \
-	&& add-apt-repository ppa:ondrej/php \
-	&& add-apt-repository ppa:ondrej/apache2 \
-	&& sudo apt-get -y update \
-	&& apt-get install -y apache2 libapache2-mod-php php7.4 php7.4-curl php7.4-intl php7.4-xml php7.4-mbstring php7.4-zip php7.4-mysql php7.4-cli php-amqplib php-ssh2 php7.4-zmq php7.4-imap php7.4-redis php7.4-bcmath php7.4-gd php7.4-bz2 php7.4-soap wget xvfb git zip unzip mysql-client \
+RUN sudo apk update \
+	&& sudo apk add lsyncd redis-server rabbitmq-server mysql-server \
+	&& apk add --repository http://dl-cdn.alpinelinux.org/alpine/edge/community \
+	&& date \
+	&& sudo apk update \
+	&& apk add apache2 libapache2-mod-php php7.4 php7.4-curl php7.4-intl php7.4-xml php7.4-mbstring php7.4-zip php7.4-mysql php7.4-cli php-amqplib php-ssh2 php7.4-zmq php7.4-imap php7.4-redis php7.4-bcmath php7.4-gd php7.4-bz2 php7.4-soap wget xvfb git zip unzip mysql-client \
 	&& cp /usr/local/pckg-utils/external/etc_apache2_apache2.conf /etc/apache2/apache2.conf \
 	&& cp /usr/local/pckg-utils/external/000-default.conf /etc/apache2/sites-enabled/000-default.conf \
 	&& mkdir -p /etc/ssl/private/ \
@@ -15,8 +15,8 @@ RUN sudo apt-get -y update \
 	&& a2enmod expires headers rewrite ssl \
 	&& sh /usr/local/pckg-utils/installComposer.sh \
 	&& sh /usr/local/pckg-utils/installBasicFrontend.sh \
-	&& sudo apt-get -y update \
-	&& apt-get install -y iputils-ping nano net-tools zsh openvpn gcc g++ make build-essential \
+	&& sudo apk update \
+	&& apk add iputils-ping nano net-tools zsh openvpn gcc g++ make build-essential \
 	&& wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh || true \
 	&& sh /usr/local/pckg-utils/addDeveloper.sh \
 	&& mkdir -p /root/.ssh \
@@ -24,7 +24,7 @@ RUN sudo apt-get -y update \
 	&& sh /usr/local/pckg-utils/copyCertificates.sh \
 	&& curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - \
 	&& sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" \
-	&& sudo apt-get -y update && sudo apt-get install -y docker-ce docker-ce-cli containerd.io \
+	&& sudo apk update && sudo apk add docker-ce docker-ce-cli containerd.io \
 	&& rm -rf /var/lib/apt/lists/* \
 	&& rm -rf /usr/local/pckg-utils
 WORKDIR /var/www/html/

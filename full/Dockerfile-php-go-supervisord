@@ -6,7 +6,7 @@ COPY utils /usr/local/pckg-utils/
 #RUN cp -R utils /usr/local/pckg-utils
 
 # supervisord
-RUN apt-get update && apt-get install -y supervisor
+RUN apt-get -y update && apt-get install -y supervisor
 
 # change workdir for a developer
 WORKDIR /var/www/html/

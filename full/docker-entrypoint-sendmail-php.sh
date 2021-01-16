@@ -6,14 +6,14 @@ if [ -z "$JOB" ]; then
     exit;
 fi
 
-# apt-get install sendmail-cf m4 -y
+# apt-get install -y sendmail-cf m4
 service rsyslog start
 
 if [ -z "$DOMAIN" ]; then
     echo "DOMAIN env variable is recommended, not setting up hosts";
     #exit;
 else
-  #apt-get update && apt-get install net-tools -y
+  #apt-get update && apt-get install -y net-tools
 
   # collect variables
   #ETH0 = $(/sbin/ifconfig eth0 | awk -F ' *|:' '/inet /{print $3}')

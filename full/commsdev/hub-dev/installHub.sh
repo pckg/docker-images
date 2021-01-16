@@ -10,7 +10,7 @@ cp /usr/local/commsdev-utils/preview.sh /var/www/
 cp /usr/local/commsdev-utils/zip.sh /var/www/
 
 # install zip
-apt-get install zip -y
+apt-get install -y zip
 
 # install dependencies
 yarn install

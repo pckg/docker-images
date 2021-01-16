@@ -5,6 +5,7 @@ ini_set('display_errors', 1);
 
 $file = 'Dockerfile-' . $argv[1];
 $dir = __DIR__ . '/';
+$apk = ($argv[2] ?? false) === 'alpine';
 
 if ($file === 'Dockerfile-') {
     $file = 'Dockerfile';
@@ -13,7 +14,8 @@ if ($file === 'Dockerfile-') {
 $content = file_get_contents($dir . $file);
 $lines = explode("\n", $content);
 
-function replaceAlpine($s) {
+function replaceAlpine($s)
+{
     return $s;
 }
 
@@ -58,6 +60,38 @@ foreach ($lines as $line) {
 
 $data = implode("\n", $data);
 
-file_put_contents($dir . $file . '-build', $data);
+if ($apk) {
+    $data = str_replace([
+        'ubuntu:20.04',
+        'schtr4jh/pckg:base',
+        'apt-get -y update',
+        'apt-get install -y',
+        ' apt-utils',
+        ' gnupg-agent',
+        ' locales',
+        ' software-properties-common',
+        ' apt-transport-https',
+        'locale-gen en_US.UTF-8',
+        'dpkg-reconfigure -f noninteractive tzdata',
+        'add-apt-repository ppa:ondrej/php',
+        'add-apt-repository ppa:ondrej/apache2',
+    ], [
+        'alpine',
+        'schtr4jh/pckg:base-alpine',
+        'apk update',
+        'apk add',
+        '',
+        '',
+        '',
+        '',
+        '',
+        'date',
+        'date',
+        'apk add --repository http://dl-cdn.alpinelinux.org/alpine/edge/community',
+        'date',
+    ], $data);
+}
+
+file_put_contents($dir . $file . '-build' . ($apk ? '-alpine' : ''), $data);
 
 echo "Done";

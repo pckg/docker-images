@@ -1,0 +1,10 @@
+FROM alpine
+MAINTAINER schtr4jh@schtr4jh.net
+RUN apk update \
+	&& apk add sudo curl tzdata openssl ca-certificates curl \
+	&& date \
+	&& echo Europe/Ljubljana > /etc/timezone \
+	&& date \
+	&& rm -rf /var/lib/apt/lists/* \
+	&& rm -rf /usr/local/pckg-utils
+ENTRYPOINT ["date"]

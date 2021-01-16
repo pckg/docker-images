@@ -9,7 +9,7 @@ COPY utils /usr/local/pckg-utils/
 RUN sh /usr/local/pckg-utils/installWeb-cron.sh
 
 #
-RUN apt-get install -q -y rsyslog
+RUN apt-get install -y rsyslog -q
 
 # worker = sendmail + opendkim
 RUN sh /usr/local/pckg-utils/installSendmail.sh

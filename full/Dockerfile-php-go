@@ -9,7 +9,7 @@ COPY utils /usr/local/pckg-utils/
 RUN sh /usr/local/pckg-utils/installWeb-cron.sh
 
 # go
-RUN apt-get install golang golang-go -y
+RUN apt-get install -y golang golang-go
 
 RUN export GOPATH=/var/www/html
 RUN export GOBIN=$GOPATH/bin

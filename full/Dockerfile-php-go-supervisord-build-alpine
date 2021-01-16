@@ -1,7 +1,7 @@
 FROM schtr4jh/pckg:php-go
 MAINTAINER schtr4jh@schtr4jh.net
 COPY utils /usr/local/pckg-utils/
-RUN apt-get -y update && apt-get install -y supervisor \
+RUN apk update && apk add supervisor \
 	&& rm -rf /var/lib/apt/lists/* \
 	&& rm -rf /usr/local/pckg-utils
 WORKDIR /var/www/html/
