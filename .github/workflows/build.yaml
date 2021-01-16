@@ -23,8 +23,14 @@ jobs:
       - name: Build
         run: "cd full && docker build -t schtr4jh/pckg:base -f Dockerfile-base-build ."
 
-      #- name: Push
-      #  run: "cd full && docker push schtr4jh/pckg:base"
+      - name: Dump DO Registry auth
+        env:
+          DOCKER_HUB_AUTH_TOKEN: ${{ secrets.DOCKER_HUB_AUTH_TOKEN }}
+          DOCKER_HUB_USER: ${{ secrets.DOCKER_HUB_USER }}
+        run: echo $DOCKER_HUB_AUTH_TOKEN | docker login registry.hub.docker.com --username $DOCKER_HUB_USER --password-stdin
+
+      - name: Push
+        run: "cd full && docker push schtr4jh/pckg:base"
 
   build-apache:
     name: Build Apache
@@ -42,10 +48,16 @@ jobs:
       - uses: satackey/action-docker-layer-caching@v0.0.11
 
       - name: Build
-        run: "cd full && docker build -t schtr4jh/pckg:apache -f Dockerfile-apache-build ."
+        run: "cd full && docker build -t schtr4jh/pckg:apache-alpine -f Dockerfile-apache-build ."
 
-      #- name: Push
-      #  run: "docker push schtr4jh/pckg:apache"
+      - name: Dump DO Registry auth
+        env:
+          DOCKER_HUB_AUTH_TOKEN: ${{ secrets.DOCKER_HUB_AUTH_TOKEN }}
+          DOCKER_HUB_USER: ${{ secrets.DOCKER_HUB_USER }}
+        run: echo $DOCKER_HUB_AUTH_TOKEN | docker login registry.hub.docker.com --username $DOCKER_HUB_USER --password-stdin
+
+      - name: Push
+        run: "docker push schtr4jh/pckg:apache-alpine"
 
   build-apache-fpm:
     name: Build Apache FPM
@@ -65,8 +77,14 @@ jobs:
       - name: Build
         run: "cd full && docker build -t schtr4jh/pckg:apache-fpm-alpine -f Dockerfile-apache-fpm-build ."
 
-      #- name: Push
-      #  run: "docker push schtr4jh/pckg:apache-fpm-alpine"
+      - name: Dump DO Registry auth
+        env:
+          DOCKER_HUB_AUTH_TOKEN: ${{ secrets.DOCKER_HUB_AUTH_TOKEN }}
+          DOCKER_HUB_USER: ${{ secrets.DOCKER_HUB_USER }}
+        run: echo $DOCKER_HUB_AUTH_TOKEN | docker login registry.hub.docker.com --username $DOCKER_HUB_USER --password-stdin
+
+      - name: Push
+        run: "docker push schtr4jh/pckg:apache-fpm-alpine"
 
   build-beanstalkd:
     name: Build Beanstalkd
@@ -86,50 +104,68 @@ jobs:
       - name: Build
         run: "cd full && docker build -t schtr4jh/pckg:beanstalkd-alpine -f Dockerfile-beanstalkd-build ."
 
-      #- name: Push
-      #  run: "docker push schtr4jh/pckg:beanstalkd-alpine"
+      - name: Dump DO Registry auth
+        env:
+          DOCKER_HUB_AUTH_TOKEN: ${{ secrets.DOCKER_HUB_AUTH_TOKEN }}
+          DOCKER_HUB_USER: ${{ secrets.DOCKER_HUB_USER }}
+        run: echo $DOCKER_HUB_AUTH_TOKEN | docker login registry.hub.docker.com --username $DOCKER_HUB_USER --password-stdin
 
-  build-rabbitmq:
-    name: Build RabbitMQ
-    needs: [ build-base ]
-    runs-on: ubuntu-latest
-    timeout-minutes: 20
-    strategy:
-      fail-fast: true
-      matrix:
-        php-versions: [ '7.4' ]
-    steps:
+      - name: Push
+        run: "docker push schtr4jh/pckg:beanstalkd-alpine"
 
-      - uses: actions/checkout@v2
+#  build-rabbitmq:
+#    name: Build RabbitMQ
+#    needs: [ build-base ]
+#    runs-on: ubuntu-latest
+#    timeout-minutes: 20
+#    strategy:
+#      fail-fast: true
+#      matrix:
+#        php-versions: [ '7.4' ]
+#    steps:
+#
+#      - uses: actions/checkout@v2
+#
+#      - uses: satackey/action-docker-layer-caching@v0.0.11
+#
+#      - name: Build
+#        run: "cd full && docker build -t schtr4jh/pckg:rabbitmq-alpine -f Dockerfile-rabbitmq-build ."
+#
+#      - name: Dump DO Registry auth
+#        env:
+#          DOCKER_HUB_AUTH_TOKEN: ${{ secrets.DOCKER_HUB_AUTH_TOKEN }}
+#          DOCKER_HUB_USER: ${{ secrets.DOCKER_HUB_USER }}
+#        run: echo $DOCKER_HUB_AUTH_TOKEN | docker login registry.hub.docker.com --username $DOCKER_HUB_USER --password-stdin
+#
+#      - name: Push
+#        run: "docker push schtr4jh/pckg:rabbitmq-alpine"
 
-      - uses: satackey/action-docker-layer-caching@v0.0.11
-
-      - name: Build
-        run: "cd full && docker build -t schtr4jh/pckg:rabbitmq-alpine -f Dockerfile-rabbitmq-build ."
-
-      #- name: Push
-      #  run: "docker push schtr4jh/pckg:rabbitmq-alpine"
-
-  build-redis:
-    name: Build Redis
-    needs: [ build-base ]
-    runs-on: ubuntu-latest
-    timeout-minutes: 20
-    strategy:
-      fail-fast: true
-      matrix:
-        php-versions: [ '7.4' ]
-    steps:
-
-      - uses: actions/checkout@v2
-
-      - uses: satackey/action-docker-layer-caching@v0.0.11
-
-      - name: Build
-        run: "cd full && docker build -t schtr4jh/pckg:redis-alpine -f Dockerfile-redis-build ."
-
-      #- name: Push
-      #  run: "docker push schtr4jh/pckg:redis-alpine"
+#  build-redis:
+#    name: Build Redis
+#    needs: [ build-base ]
+#    runs-on: ubuntu-latest
+#    timeout-minutes: 20
+#    strategy:
+#      fail-fast: true
+#      matrix:
+#        php-versions: [ '7.4' ]
+#    steps:
+#
+#      - uses: actions/checkout@v2
+#
+#      - uses: satackey/action-docker-layer-caching@v0.0.11
+#
+#      - name: Build
+#        run: "cd full && docker build -t schtr4jh/pckg:redis-alpine -f Dockerfile-redis-build ."
+#
+#      - name: Dump DO Registry auth
+#        env:
+#          DOCKER_HUB_AUTH_TOKEN: ${{ secrets.DOCKER_HUB_AUTH_TOKEN }}
+#          DOCKER_HUB_USER: ${{ secrets.DOCKER_HUB_USER }}
+#        run: echo $DOCKER_HUB_AUTH_TOKEN | docker login registry.hub.docker.com --username $DOCKER_HUB_USER --password-stdin
+#
+#      - name: Push
+#        run: "docker push schtr4jh/pckg:redis-alpine"
 
   build-sendmail:
     name: Build Sendmail
@@ -149,8 +185,14 @@ jobs:
       - name: Build
         run: "cd full && docker build -t schtr4jh/pckg:sendmail-php -f Dockerfile-sendmail-php-build ."
 
-      #- name: Push
-      #  run: "docker push schtr4jh/pckg:sendmail-php"
+      - name: Dump DO Registry auth
+        env:
+          DOCKER_HUB_AUTH_TOKEN: ${{ secrets.DOCKER_HUB_AUTH_TOKEN }}
+          DOCKER_HUB_USER: ${{ secrets.DOCKER_HUB_USER }}
+        run: echo $DOCKER_HUB_AUTH_TOKEN | docker login registry.hub.docker.com --username $DOCKER_HUB_USER --password-stdin
+
+      - name: Push
+        run: "docker push schtr4jh/pckg:sendmail-php"
 
   build-php:
     name: Build PHP
@@ -170,8 +212,14 @@ jobs:
       - name: Build
         run: "cd full && docker build -t schtr4jh/pckg:php-cron -f Dockerfile-php-cron-build ."
 
-      #- name: Push
-      #  run: "docker push schtr4jh/pckg:php-cron"
+      - name: Dump DO Registry auth
+        env:
+          DOCKER_HUB_AUTH_TOKEN: ${{ secrets.DOCKER_HUB_AUTH_TOKEN }}
+          DOCKER_HUB_USER: ${{ secrets.DOCKER_HUB_USER }}
+        run: echo $DOCKER_HUB_AUTH_TOKEN | docker login registry.hub.docker.com --username $DOCKER_HUB_USER --password-stdin
+
+      - name: Push
+        run: "docker push schtr4jh/pckg:php-cron"
 
   build-go:
     name: Build PHP Go
@@ -191,8 +239,14 @@ jobs:
       - name: Build
         run: "cd full && docker build -t schtr4jh/pckg:php-go-alpine -f Dockerfile-php-go-build ."
 
-      #- name: Push
-      #  run: "docker push schtr4jh/pckg:php-go-alpine"
+      - name: Dump DO Registry auth
+        env:
+          DOCKER_HUB_AUTH_TOKEN: ${{ secrets.DOCKER_HUB_AUTH_TOKEN }}
+          DOCKER_HUB_USER: ${{ secrets.DOCKER_HUB_USER }}
+        run: echo $DOCKER_HUB_AUTH_TOKEN | docker login registry.hub.docker.com --username $DOCKER_HUB_USER --password-stdin
+
+      - name: Push
+        run: "docker push schtr4jh/pckg:php-go-alpine"
 
   build-go-supervisor:
     name: Build PHP Go Supervisor
@@ -212,5 +266,11 @@ jobs:
       - name: Build
         run: "cd full && docker build -t schtr4jh/pckg:php-go-supervisord-alpine -f Dockerfile-php-go-supervisord-build ."
 
-      #- name: Push
-      #  run: "docker push schtr4jh/pckg:php-go-supervisord-alpine"
+      - name: Dump DO Registry auth
+        env:
+          DOCKER_HUB_AUTH_TOKEN: ${{ secrets.DOCKER_HUB_AUTH_TOKEN }}
+          DOCKER_HUB_USER: ${{ secrets.DOCKER_HUB_USER }}
+        run: echo $DOCKER_HUB_AUTH_TOKEN | docker login registry.hub.docker.com --username $DOCKER_HUB_USER --password-stdin
+
+      - name: Push
+        run: "docker push schtr4jh/pckg:php-go-supervisord-alpine"
