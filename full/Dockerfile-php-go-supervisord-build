@@ -1,7 +1,8 @@
 FROM schtr4jh/pckg:php-go-alpine
 MAINTAINER schtr4jh@schtr4jh.net
 COPY utils /usr/local/pckg-utils/
-RUN apt-get install -y apt-get -y update && supervisor \
+RUN apt-get -y update \
+	&& apt-get install -y supervisor \
 	&& rm -rf /var/lib/apt/lists/* \
 	&& rm -rf /usr/local/pckg-utils
 WORKDIR /var/www/html/

@@ -1,7 +1,8 @@
 FROM schtr4jh/pckg:php-go-alpine
 MAINTAINER schtr4jh@schtr4jh.net
 COPY utils /usr/local/pckg-utils/
-RUN apk add apk update && supervisor \
+RUN apk update \
+	&& apk add supervisor \
 	&& rm -rf /var/lib/apt/lists/* \
 	&& rm -rf /usr/local/pckg-utils
 WORKDIR /var/www/html/
