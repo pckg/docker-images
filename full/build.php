@@ -19,6 +19,114 @@ function replaceAlpine($s)
     return $s;
 }
 
+function optimizeFlow($data)
+{
+    /**
+     * This should be done in-above?
+     */
+    $sort = true;
+    if ($sort) {
+        $sorted = [
+            // add repositories
+            0 => [],
+            // update
+            1 => [],
+            // install
+            2 => [],
+            // more?
+            3 => [],
+        ];
+        foreach ($data as $line) {
+            $key = 3;
+            if (strpos($line, 'add-apt-repository') !== false) {
+                $key = 0;
+            } else if (strpos($line, 'sudo -E bash -') !== false) {
+                $key = 0;
+            } else if (strpos($line, ' apt-key add ') !== false) {
+                $key = 0;
+            } else if (strpos($line, ' stable main') !== false) {
+                $key = 0;
+            } else if (strpos($line, '-y update')) {
+                $key = 1;
+            } else if (strpos($line, 'apt-get install') !== false) {
+                $key = 2;
+            }
+
+            $sorted[$key][] = $line;
+        }
+        $newData = [];
+        foreach ($sorted as $i => $lines) {
+            foreach ($lines as $line) {
+                $newData[] = $line;
+            }
+        }
+
+        $data = $newData;
+    }
+
+    /**
+     * Optimize same lines.
+     */
+    $prevLine = null;
+    foreach ($data as $i => $row) {
+        /**
+         * Remove echos.
+         */
+        if (strpos($row, '  echo ') === 0) {
+            unset($data[$i]);
+        } else if ($prevLine === $row) {
+            unset($data[$i]);
+        }
+        $prevLine = $row;
+    }
+
+    /**
+     * Merge installs.
+     */
+    $installs = [];
+    $newData = [];
+    foreach ($data as $line) {
+        if (strpos($line, 'apt-get install') !== false) {
+            $installs[] = $line;
+            continue;
+        }
+        if ($installs) {
+            $allInstals = implode(" ", $installs);
+            $allInstals = str_replace('apt-get install -y ', '', $allInstals);
+            $exploded = explode(" ", $allInstals);
+            $unique = array_unique($exploded);
+            $newData[] = 'apt-get install -y ' . implode(" ", $unique);
+            $installs = [];
+        }
+        $newData[] = $line;
+    }
+    $data = $newData;
+
+    /**
+     * Merge npm installs.
+     */
+    $installs = [];
+    $newData = [];
+    foreach ($data as $line) {
+        if (strpos($line, 'npm install -g') !== false) {
+            $installs[] = $line;
+            continue;
+        }
+        if ($installs) {
+            $allInstals = implode(" ", $installs);
+            $allInstals = str_replace('npm install -g ', '', $allInstals);
+            $exploded = explode(" ", $allInstals);
+            $unique = array_unique($exploded);
+            $newData[] = 'npm install -g ' . implode(" ", $unique);
+            $installs = [];
+        }
+        $newData[] = $line;
+    }
+    $data = $newData;
+
+    return $data;
+}
+
 $data = [];
 $temp = [];
 foreach ($lines as $line) {
@@ -33,7 +141,7 @@ foreach ($lines as $line) {
         if ($temp) {
             $temp[] = 'rm -rf /var/lib/apt/lists/*';
             $temp[] = 'rm -rf /usr/local/pckg-utils';
-            $data[] = 'RUN ' . implode(" \\\n\t&& ", $temp);
+            $data[] = 'RUN ' . implode(" \\\n\t&& ", optimizeFlow($temp));
             $temp = [];
         }
         $data[] = $line;
@@ -52,6 +160,29 @@ foreach ($lines as $line) {
          * Skip "nonsense".
          */
         if (!$subline || strpos($subline, '#') === 0) {
+            continue;
+        }
+        if (strpos($subline, 'sh /usr/local/pckg-utils/') === 0) {
+            $temp[] = '  echo "Running ' . $subline . '"';
+            $subsubcontent = file_get_contents($dir . str_replace('/usr/local/pckg-', '', substr($subline, 3)));
+            foreach (explode("\n", $subsubcontent) as $subsubline) {
+                if (!$subsubline || strpos($subsubline, '#') === 0) {
+                    continue;
+                }
+
+                if (strpos($subsubline, 'sh /usr/local/pckg-utils/') === 0) {
+                    $temp[] = '  echo "Running ' . $subsubline . '"';
+                    $subsubsubcontent = file_get_contents($dir . str_replace('/usr/local/pckg-', '', substr($subsubline, 3)));
+                    foreach (explode("\n", $subsubsubcontent) as $subsubsubline) {
+                        if (!$subsubsubline || strpos($subsubsubline, '#') === 0) {
+                            continue;
+                        }
+                        $temp[] = replaceAlpine($subsubsubline);
+                    }
+                    continue;
+                }
+                $temp[] = replaceAlpine($subsubline);
+            }
             continue;
         }
         $temp[] = replaceAlpine($subline);

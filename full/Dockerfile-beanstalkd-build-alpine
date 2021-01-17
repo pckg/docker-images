@@ -1,8 +1,8 @@
 FROM schtr4jh/pckg:base-alpine
 MAINTAINER schtr4jh@schtr4jh.net
 COPY utils /usr/local/pckg-utils/
-RUN sudo apk update \
-	&& sudo apk add beanstalkd \
+RUN apk update \
+	&& apk add beanstalkd \
 	&& rm -rf /var/lib/apt/lists/* \
 	&& rm -rf /usr/local/pckg-utils
 COPY docker-entrypoint-beanstalkd.sh /

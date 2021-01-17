@@ -1,5 +1,5 @@
 # install utils
-sudo apt-get -y update
+apt-get -y update
 apt-get install -y iputils-ping nano net-tools zsh openvpn gcc g++ make build-essential
 wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh || true
 # iproute

@@ -1,6 +1,6 @@
 # bugfix?
-sudo apt-get -y update
-sudo apt-get install -y g++ build-essential
+apt-get -y update
+apt-get install -y g++ build-essential
 
 # node + npm
 sh /usr/local/pckg-utils/installNode.sh
