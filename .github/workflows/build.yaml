@@ -264,7 +264,7 @@ jobs:
       #- uses: satackey/action-docker-layer-caching@v0.0.11
 
       - name: Build
-        run: "cd full && docker build -t registry.hub.docker.com/schtr4jh/pckg:php-go-supervisord-alpine -f Dockerfile-php-go-supervisord-build ."
+        run: "cd full && docker pull schtr4jh/pckg:php-go-alpine && docker build -t registry.hub.docker.com/schtr4jh/pckg:php-go-supervisord-alpine -f Dockerfile-php-go-supervisord-build ."
 
       - name: Dump DO Registry auth
         env:
