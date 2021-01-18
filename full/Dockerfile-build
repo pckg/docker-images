@@ -15,6 +15,7 @@ RUN add-apt-repository ppa:ondrej/php \
 	&& mkdir -p /etc/ssl/private/ \
 	&& cp /usr/local/pckg-utils/external/apache-selfsigned.crt /etc/ssl/certs/apache-selfsigned.crt \
 	&& cp /usr/local/pckg-utils/external/apache-selfsigned.key /etc/ssl/private/apache-selfsigned.key \
+	&& a2dismod php8.0 \
 	&& a2enmod expires headers rewrite ssl \
 	&& php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
 	&& php -r "if (hash_file('sha384', 'composer-setup.php') === '756890a4488ce9024fc62c56153228907f1545c228516cbf63f885e036d37e9a59d27d63f46af1d4d07ee0f76181c7d3') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;" \

@@ -6,4 +6,5 @@ cp /usr/local/pckg-utils/external/apache-selfsigned.crt /etc/ssl/certs/apache-se
 cp /usr/local/pckg-utils/external/apache-selfsigned.key /etc/ssl/private/apache-selfsigned.key
 
 # enable apache modules
+a2dismod php8.0
 a2enmod expires headers rewrite ssl
