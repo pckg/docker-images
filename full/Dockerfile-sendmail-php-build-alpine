@@ -3,7 +3,8 @@ MAINTAINER schtr4jh@schtr4jh.net
 COPY utils /usr/local/pckg-utils/
 RUN apk add --repository http://dl-cdn.alpinelinux.org/alpine/edge/community \
 	&& apk update \
-	&& apk add mysql-client php7.4 php-curl php-intl php-xml php-mbstring php-zip php-mysql php-cli php-amqplib php-ssh2 php-zmq php-imap php-redis php-bcmath php-gd php-bz2 php-soap wget xvfb zip unzip rsyslog -q sendmail opendkim opendkim-tools \
+	&& apk add mysql-client php7.4 php7.4-curl php7.4-intl php7.4-xml php7.4-mbstring php7.4-zip php7.4-mysql php7.4-cli php-amqplib php-ssh2 php7.4-zmq php7.4-imap php7.4-redis php7.4-bcmath php7.4-gd php7.4-bz2 php7.4-soap wget xvfb git zip unzip rsyslog -q sendmail opendkim opendkim-tools \
+	&& sudo update-alternatives --set php /usr/bin/php7.4 \
 	&& mkdir /etc/opendkim \
 	&& mkdir /etc/opendkim/keys \
 	&& touch /etc/opendkim/KeyTable \
