@@ -25,11 +25,11 @@ matchCommandWithOutput "webpack --version" "webpack 5." "Missing or invalid webp
 matchCommandWithOutput "webpack --version" "webpack-cli 4." "Missing or invalid webpack-cli"
 matchCommandWithOutput "lessc --version" "lessc 4." "Missing or invalid less"
 
-matchCommandWithOutput "redis-server --version" "Redis server v=5." "Missing or invalid redis server"
-matchCommandWithOutput "ls /usr/lib/rabbitmq/lib/" "rabbitmq_server-3.8." "Missing or invalid rabbitmq server"
+#matchCommandWithOutput "redis-server --version" "Redis server v=5." "Missing or invalid redis server"
+#matchCommandWithOutput "ls /usr/lib/rabbitmq/lib/" "rabbitmq_server-3.8." "Missing or invalid rabbitmq server"
 matchCommandWithOutput "mysql --version" "mysql Ver 8." "Missing or invalid mysql server"
 matchCommandWithOutput "apache2 -v" "Apache/2.4." "Missing or invalid apache server"
-matchCommandWithOutput "docker -v" "Docker version 20." "Missing or invalid docker"
+#matchCommandWithOutput "docker -v" "Docker version 20." "Missing or invalid docker"
 
 matchCommandWithOutput "nano --version" "version 4.8" "Missing or invalid nano"
 matchCommandWithOutput "git --version" "git version 2." "Missing or invalid git"
