@@ -22,7 +22,6 @@ matchCommandWithOutput "php -v" "PHP 7.4." "Missing or invalid PHP version"
 matchCommandWithOutput "mysql --version" "mysql Ver 8." "Missing or invalid mysql server"
 matchCommandWithOutput "apache2 -v" "Apache/2.4." "Missing or invalid apache server"
 
-matchCommandWithOutput "nano --version" "version 4.8" "Missing or invalid nano"
 matchCommandWithOutput "git --version" "git version 2." "Missing or invalid git"
 
 echo "SUCCESS"
