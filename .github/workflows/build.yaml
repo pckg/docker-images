@@ -14,6 +14,8 @@ jobs:
       fail-fast: true
       matrix:
         php-versions: [ '7.4' ]
+    env:
+      IMAGE_TAG: registry.hub.docker.com/schtr4jh/pckg:base
     steps:
 
       - uses: actions/checkout@v2
@@ -21,7 +23,7 @@ jobs:
       #- uses: satackey/action-docker-layer-caching@v0.0.11
 
       - name: Build
-        run: "cd full && docker build -t registry.hub.docker.com/schtr4jh/pckg:base -f Dockerfile-base-build ."
+        run: "cd full && docker build -t $IMAGE_TAG -f Dockerfile-base-build ."
 
       - name: Dump DO Registry auth
         env:
@@ -30,7 +32,7 @@ jobs:
         run: echo $DOCKER_HUB_AUTH_TOKEN | docker login registry.hub.docker.com --username $DOCKER_HUB_USER --password-stdin
 
       - name: Push
-        run: "docker push registry.hub.docker.com/schtr4jh/pckg:base"
+        run: "docker push $IMAGE_TAG"
 
   build-apache:
     name: Build Apache
@@ -41,6 +43,8 @@ jobs:
       fail-fast: true
       matrix:
         php-versions: [ '7.4' ]
+    env:
+      IMAGE_TAG: registry.hub.docker.com/schtr4jh/pckg:apache-alpine
     steps:
 
       - uses: actions/checkout@v2
@@ -48,7 +52,10 @@ jobs:
       #- uses: satackey/action-docker-layer-caching@v0.0.11
 
       - name: Build
-        run: "cd full && docker build -t registry.hub.docker.com/schtr4jh/pckg:apache-alpine -f Dockerfile-apache-build ."
+        run: "cd full && docker build -t $IMAGE_TAG -f Dockerfile-apache-build ."
+
+      - name: Test
+        run: "cd full && bash test-build-image.sh $IMAGE_TAG apache-alpine -alpine¸"
 
       - name: Dump DO Registry auth
         env:
@@ -57,7 +64,7 @@ jobs:
         run: echo $DOCKER_HUB_AUTH_TOKEN | docker login registry.hub.docker.com --username $DOCKER_HUB_USER --password-stdin
 
       - name: Push
-        run: "docker push registry.hub.docker.com/schtr4jh/pckg:apache-alpine"
+        run: "docker push $IMAGE_TAG"
 
   build-apache-fpm:
     name: Build Apache FPM
@@ -68,6 +75,8 @@ jobs:
       fail-fast: true
       matrix:
         php-versions: [ '7.4' ]
+    env:
+      IMAGE_TAG: registry.hub.docker.com/schtr4jh/pckg:apache-fpm-alpine
     steps:
 
       - uses: actions/checkout@v2
@@ -75,7 +84,10 @@ jobs:
       #- uses: satackey/action-docker-layer-caching@v0.0.11
 
       - name: Build
-        run: "cd full && docker build -t registry.hub.docker.com/schtr4jh/pckg:apache-fpm-alpine -f Dockerfile-apache-fpm-build ."
+        run: "cd full && docker build -t $IMAGE_TAG -f Dockerfile-apache-fpm-build ."
+
+      - name: Test
+        run: "cd full && bash test-build-image.sh $IMAGE_TAG apache-fpm-alpine -apache-fpm"
 
       - name: Dump DO Registry auth
         env:
@@ -84,7 +96,7 @@ jobs:
         run: echo $DOCKER_HUB_AUTH_TOKEN | docker login registry.hub.docker.com --username $DOCKER_HUB_USER --password-stdin
 
       - name: Push
-        run: "docker push registry.hub.docker.com/schtr4jh/pckg:apache-fpm-alpine"
+        run: "docker push $IMAGE_TAG"
 
   build-beanstalkd:
     name: Build Beanstalkd
@@ -95,6 +107,8 @@ jobs:
       fail-fast: true
       matrix:
         php-versions: [ '7.4' ]
+    env:
+      IMAGE_TAG: registry.hub.docker.com/schtr4jh/pckg:beanstalkd-alpine
     steps:
 
       - uses: actions/checkout@v2
@@ -102,7 +116,10 @@ jobs:
       #- uses: satackey/action-docker-layer-caching@v0.0.11
 
       - name: Build
-        run: "cd full && docker build -t registry.hub.docker.com/schtr4jh/pckg:beanstalkd-alpine -f Dockerfile-beanstalkd-build ."
+        run: "cd full && docker build -t $IMAGE_TAG -f Dockerfile-beanstalkd-build ."
+
+      - name: Test
+        run: "cd full && bash test-build-image.sh $IMAGE_TAG beanstalkd-alpine -beanstalkd"
 
       - name: Dump DO Registry auth
         env:
@@ -111,7 +128,7 @@ jobs:
         run: echo $DOCKER_HUB_AUTH_TOKEN | docker login registry.hub.docker.com --username $DOCKER_HUB_USER --password-stdin
 
       - name: Push
-        run: "docker push registry.hub.docker.com/schtr4jh/pckg:beanstalkd-alpine"
+        run: "docker push $IMAGE_TAG"
 
 #  build-rabbitmq:
 #    name: Build RabbitMQ
@@ -176,6 +193,8 @@ jobs:
       fail-fast: true
       matrix:
         php-versions: [ '7.4' ]
+    env:
+      IMAGE_TAG: registry.hub.docker.com/schtr4jh/pckg:sendmail-php
     steps:
 
       - uses: actions/checkout@v2
@@ -183,7 +202,10 @@ jobs:
       #- uses: satackey/action-docker-layer-caching@v0.0.11
 
       - name: Build
-        run: "cd full && docker build -t registry.hub.docker.com/schtr4jh/pckg:sendmail-php -f Dockerfile-sendmail-php-build ."
+        run: "cd full && docker build -t $IMAGE_TAG -f Dockerfile-sendmail-php-build ."
+
+      - name: Test
+        run: "cd full && bash test-build-image.sh $IMAGE_TAG sendmail-php -sendmail-php"
 
       - name: Dump DO Registry auth
         env:
@@ -192,7 +214,7 @@ jobs:
         run: echo $DOCKER_HUB_AUTH_TOKEN | docker login registry.hub.docker.com --username $DOCKER_HUB_USER --password-stdin
 
       - name: Push
-        run: "docker push registry.hub.docker.com/schtr4jh/pckg:sendmail-php"
+        run: "docker push $IMAGE_TAG"
 
   build-php:
     name: Build PHP
@@ -203,6 +225,8 @@ jobs:
       fail-fast: true
       matrix:
         php-versions: [ '7.4' ]
+    env:
+      IMAGE_TAG: registry.hub.docker.com/schtr4jh/pckg:php-cron
     steps:
 
       - uses: actions/checkout@v2
@@ -210,7 +234,10 @@ jobs:
       #- uses: satackey/action-docker-layer-caching@v0.0.11
 
       - name: Build
-        run: "cd full && docker build -t registry.hub.docker.com/schtr4jh/pckg:php-cron -f Dockerfile-php-cron-build ."
+        run: "cd full && docker build -t $IMAGE_TAG -f Dockerfile-php-cron-build ."
+
+      - name: Test
+        run: "cd full && bash test-build-image.sh $IMAGE_TAG php-cron -php-cron"
 
       - name: Dump DO Registry auth
         env:
@@ -219,7 +246,7 @@ jobs:
         run: echo $DOCKER_HUB_AUTH_TOKEN | docker login registry.hub.docker.com --username $DOCKER_HUB_USER --password-stdin
 
       - name: Push
-        run: "docker push registry.hub.docker.com/schtr4jh/pckg:php-cron"
+        run: "docker push $IMAGE_TAG"
 
   build-go:
     name: Build PHP Go
@@ -230,6 +257,8 @@ jobs:
       fail-fast: true
       matrix:
         php-versions: [ '7.4' ]
+    env:
+      IMAGE_TAG: registry.hub.docker.com/schtr4jh/pckg:php-go-alpine
     steps:
 
       - uses: actions/checkout@v2
@@ -237,7 +266,10 @@ jobs:
       #- uses: satackey/action-docker-layer-caching@v0.0.11
 
       - name: Build
-        run: "cd full && docker build -t registry.hub.docker.com/schtr4jh/pckg:php-go-alpine -f Dockerfile-php-go-build ."
+        run: "cd full && docker build -t $IMAGE_TAG -f Dockerfile-php-go-build ."
+
+      - name: Test
+        run: "cd full && bash test-build-image.sh $IMAGE_TAG php-go-alpine -php-go"
 
       - name: Dump DO Registry auth
         env:
@@ -246,7 +278,7 @@ jobs:
         run: echo $DOCKER_HUB_AUTH_TOKEN | docker login registry.hub.docker.com --username $DOCKER_HUB_USER --password-stdin
 
       - name: Push
-        run: "docker push registry.hub.docker.com/schtr4jh/pckg:php-go-alpine"
+        run: "docker push $IMAGE_TAG"
 
   build-go-supervisor:
     name: Build PHP Go Supervisor
@@ -257,6 +289,8 @@ jobs:
       fail-fast: true
       matrix:
         php-versions: [ '7.4' ]
+    env:
+      IMAGE_TAG: registry.hub.docker.com/schtr4jh/pckg:php-go-supervisord-alpine
     steps:
 
       - uses: actions/checkout@v2
@@ -264,7 +298,10 @@ jobs:
       #- uses: satackey/action-docker-layer-caching@v0.0.11
 
       - name: Build
-        run: "cd full && docker pull schtr4jh/pckg:php-go-alpine && docker build -t registry.hub.docker.com/schtr4jh/pckg:php-go-supervisord-alpine -f Dockerfile-php-go-supervisord-build ."
+        run: "cd full && docker pull schtr4jh/pckg:php-go-alpine && docker build -t $IMAGE_TAG -f Dockerfile-php-go-supervisord-build ."
+
+      - name: Test
+        run: "cd full && bash test-build-image.sh $IMAGE_TAG php-go-supervisord-alpine -php-go-supervisord"
 
       - name: Dump DO Registry auth
         env:
@@ -273,7 +310,7 @@ jobs:
         run: echo $DOCKER_HUB_AUTH_TOKEN | docker login registry.hub.docker.com --username $DOCKER_HUB_USER --password-stdin
 
       - name: Push
-        run: "docker push registry.hub.docker.com/schtr4jh/pckg:php-go-supervisord-alpine"
+        run: "docker push $IMAGE_TAG"
 
   build-latest:
     name: Build latest (dev)
@@ -284,6 +321,8 @@ jobs:
       fail-fast: true
       matrix:
         php-versions: [ '7.4' ]
+    env:
+      IMAGE_TAG: registry.hub.docker.com/schtr4jh/pckg:latest
     steps:
 
       - uses: actions/checkout@v2
@@ -291,7 +330,10 @@ jobs:
       #- uses: satackey/action-docker-layer-caching@v0.0.11
 
       - name: Build
-        run: "cd full && docker build -t registry.hub.docker.com/schtr4jh/pckg:latest -f Dockerfile-build ."
+        run: "cd full && docker build -t $IMAGE_TAG -f Dockerfile-build ."
+
+      - name: Test
+        run: "cd full && bash test-build-image.sh $IMAGE_TAG latest \"\""
 
       - name: Dump DO Registry auth
         env:
@@ -300,4 +342,36 @@ jobs:
         run: echo $DOCKER_HUB_AUTH_TOKEN | docker login registry.hub.docker.com --username $DOCKER_HUB_USER --password-stdin
 
       - name: Push
-        run: "docker push registry.hub.docker.com/schtr4jh/pckg:latest"
+        run: "docker push $IMAGE_TAG"
+
+  build-services:
+    name: Build services (dev)
+    needs: [ build-base ]
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: true
+      matrix:
+        php-versions: [ '7.4' ]
+    env:
+      IMAGE_TAG: registry.hub.docker.com/schtr4jh/pckg:services
+    steps:
+
+      - uses: actions/checkout@v2
+
+      #- uses: satackey/action-docker-layer-caching@v0.0.11
+
+      - name: Build
+        run: "cd full && docker build -t $IMAGE_TAG -f Dockerfile-services-build ."
+
+      - name: Test
+        run: "cd full && bash test-build-image.sh $IMAGE_TAG services"
+
+      - name: Dump DO Registry auth
+        env:
+          DOCKER_HUB_AUTH_TOKEN: ${{ secrets.DOCKER_HUB_AUTH_TOKEN }}
+          DOCKER_HUB_USER: ${{ secrets.DOCKER_HUB_USER }}
+        run: echo $DOCKER_HUB_AUTH_TOKEN | docker login registry.hub.docker.com --username $DOCKER_HUB_USER --password-stdin
+
+      - name: Push
+        run: "docker push $IMAGE_TAG"
