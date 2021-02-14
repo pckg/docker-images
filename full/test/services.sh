@@ -29,9 +29,9 @@ matchCommandWithOutput "redis-server --version" "Redis server v=5." "Missing or 
 matchCommandWithOutput "ls /usr/lib/rabbitmq/lib/" "rabbitmq_server-3.8." "Missing or invalid rabbitmq server"
 matchCommandWithOutput "mysql --version" "mysql Ver 8." "Missing or invalid mysql server"
 matchCommandWithOutput "apache2 -v" "Apache/2.4." "Missing or invalid apache server"
-matchCommandWithOutput "docker -v" "Docker version 20." "Missing or invalid docker"
+#matchCommandWithOutput "docker -v" "Docker version 20." "Missing or invalid docker"
 
-matchCommandWithOutput "nano --version" "version 4.8" "Missing or invalid nano"
+#matchCommandWithOutput "nano --version" "version 4.8" "Missing or invalid nano"
 matchCommandWithOutput "git --version" "git version 2." "Missing or invalid git"
 
 echo "SUCCESS"
