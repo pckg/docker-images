@@ -5,6 +5,9 @@ MAINTAINER schtr4jh@schtr4jh.net
 COPY utils /usr/local/pckg-utils/
 #RUN cp -R utils /usr/local/pckg-utils
 
+# backend services = lsyncd + redis server + rabbitmq server + mysql server + openvpn
+RUN sh /usr/local/pckg-utils/installBackend.sh
+
 # worker = php + apache + mysql
 RUN sh /usr/local/pckg-utils/installWeb.sh
 
@@ -16,6 +19,9 @@ RUN sh /usr/local/pckg-utils/installFrontend.sh
 
 # install developer user + utils + bitbucket + github + zsh + certificate + openvpn
 RUN sh /usr/local/pckg-utils/installDeveloper.sh
+
+# install docker
+RUN sh /usr/local/pckg-utils/installDocker.sh
 
 # change workdir for a developer
 # USER developer
