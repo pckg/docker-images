@@ -42,6 +42,10 @@ echo "\n\nDocker"
 php build.php docker
 php build.php docker alpine
 
-echo "\n\nDev"
+echo "\n\Services"
 php build.php ""
 php build.php "" alpine
+
+echo "\n\nDev"
+php build.php services
+php build.php services alpine
