@@ -55,7 +55,7 @@ jobs:
         run: "cd full && docker build -t $IMAGE_TAG -f Dockerfile-apache-build ."
 
       - name: Test
-        run: "cd full && bash test-build-image.sh $IMAGE_TAG apache-alpine -alpine"
+        run: "cd full && bash test-build-image.sh $IMAGE_TAG apache-alpine -apache"
 
       - name: Dump DO Registry auth
         env:
@@ -132,7 +132,7 @@ jobs:
 
   build-beanstalkd:
     name: Build Beanstalkd
-    needs: [ build-base ]
+    needs: [ build-base, build-apache ]
     runs-on: ubuntu-latest
     timeout-minutes: 20
     strategy:
@@ -218,7 +218,7 @@ jobs:
 
   build-sendmail:
     name: Build Sendmail
-    needs: [ build-base ]
+    needs: [ build-base, build-apache ]
     runs-on: ubuntu-latest
     timeout-minutes: 20
     strategy:
@@ -250,7 +250,7 @@ jobs:
 
   build-php:
     name: Build PHP
-    needs: [ build-base ]
+    needs: [ build-base, build-apache ]
     runs-on: ubuntu-latest
     timeout-minutes: 20
     strategy:
@@ -282,7 +282,7 @@ jobs:
 
   build-go:
     name: Build PHP Go
-    needs: [ build-base ]
+    needs: [ build-base, build-apache ]
     runs-on: ubuntu-latest
     timeout-minutes: 20
     strategy:
@@ -314,7 +314,7 @@ jobs:
 
   build-go-supervisor:
     name: Build PHP Go Supervisor
-    needs: [ build-base ]
+    needs: [ build-base, build-apache ]
     runs-on: ubuntu-latest
     timeout-minutes: 20
     strategy:
