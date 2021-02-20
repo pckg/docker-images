@@ -33,11 +33,13 @@ function optimizeFlow($data)
             1 => [],
             // install
             2 => [],
-            // more?
+            // install more
             3 => [],
+            // more?
+            4 => [],
         ];
         foreach ($data as $line) {
-            $key = 3;
+            $key = 4;
             if (strpos($line, 'add-apt-repository') !== false) {
                 $key = 0;
             } else if (strpos($line, 'sudo -E bash -') !== false) {

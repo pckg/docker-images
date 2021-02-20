@@ -55,7 +55,7 @@ jobs:
         run: "cd full && docker build -t $IMAGE_TAG -f Dockerfile-apache-build ."
 
       - name: Test
-        run: "cd full && bash test-build-image.sh $IMAGE_TAG apache-alpine -alpine¸"
+        run: "cd full && bash test-build-image.sh $IMAGE_TAG apache-alpine -alpine"
 
       - name: Dump DO Registry auth
         env:
