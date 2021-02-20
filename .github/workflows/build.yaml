@@ -68,7 +68,7 @@ jobs:
 
   build-apache-fpm:
     name: Build Apache FPM
-    needs: [ build-base ]
+    needs: [ build-base, build-apache ]
     runs-on: ubuntu-latest
     timeout-minutes: 20
     strategy:
@@ -100,7 +100,7 @@ jobs:
 
   build-apache-fpm-snappy:
     name: Build Apache FPM Snappy
-    needs: [ build-base ]
+    needs: [ build-base, build-apache-fpm ]
     runs-on: ubuntu-latest
     timeout-minutes: 20
     strategy:
@@ -346,7 +346,7 @@ jobs:
 
   build-latest:
     name: Build latest (dev)
-    needs: [ build-base ]
+    needs: [ build-base, build-apache-fpm-snappy ]
     runs-on: ubuntu-latest
     timeout-minutes: 20
     strategy:
@@ -378,7 +378,7 @@ jobs:
 
   build-services:
     name: Build services (dev)
-    needs: [ build-base ]
+    needs: [ build-base, build-latest ]
     runs-on: ubuntu-latest
     timeout-minutes: 20
     strategy:
