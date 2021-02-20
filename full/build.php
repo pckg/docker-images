@@ -124,6 +124,15 @@ function optimizeFlow($data)
     }
     $data = $newData;
 
+    /**
+     * Strip ending newlines?
+     */
+    foreach ($data as &$line) {
+        if (substr($line, -5) === ' && \\') {
+            $line = substr($line, 0, -5);
+        }
+    }
+
     return $data;
 }
 
