@@ -13,3 +13,6 @@ sh /usr/local/pckg-utils/installLess.sh
 
 # webpack
 sh /usr/local/pckg-utils/installWebpack.sh
+
+# python
+sh /usr/local/pckg-utils/installPython.sh

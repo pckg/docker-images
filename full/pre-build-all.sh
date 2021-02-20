@@ -6,6 +6,10 @@ echo "\n\nApache FPM"
 php build.php apache-fpm
 php build.php apache-fpm alpine
 
+echo "\n\nApache FPM snappy"
+php build.php apache-fpm-snappy
+php build.php apache-fpm-snappy alpine
+
 echo "\n\nApache"
 php build.php apache
 php build.php apache alpine
@@ -42,7 +46,7 @@ echo "\n\nDocker"
 php build.php docker
 php build.php docker alpine
 
-echo "\n\Services"
+echo "\n\nServices"
 php build.php ""
 php build.php "" alpine
 

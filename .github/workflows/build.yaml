@@ -98,6 +98,38 @@ jobs:
       - name: Push
         run: "docker push $IMAGE_TAG"
 
+  build-apache-fpm-snappy:
+    name: Build Apache FPM Snappy
+    needs: [ build-base ]
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: true
+      matrix:
+        php-versions: [ '7.4' ]
+    env:
+      IMAGE_TAG: registry.hub.docker.com/schtr4jh/pckg:apache-fpm-alpine-snappy
+    steps:
+
+      - uses: actions/checkout@v2
+
+      #- uses: satackey/action-docker-layer-caching@v0.0.11
+
+      - name: Build
+        run: "cd full && docker build -t $IMAGE_TAG -f Dockerfile-apache-fpm-snappy-build ."
+
+      - name: Test
+        run: "cd full && bash test-build-image.sh $IMAGE_TAG apache-fpm-alpine -apache-fpm"
+
+      - name: Dump DO Registry auth
+        env:
+          DOCKER_HUB_AUTH_TOKEN: ${{ secrets.DOCKER_HUB_AUTH_TOKEN }}
+          DOCKER_HUB_USER: ${{ secrets.DOCKER_HUB_USER }}
+        run: echo $DOCKER_HUB_AUTH_TOKEN | docker login registry.hub.docker.com --username $DOCKER_HUB_USER --password-stdin
+
+      - name: Push
+        run: "docker push $IMAGE_TAG"
+
   build-beanstalkd:
     name: Build Beanstalkd
     needs: [ build-base ]
