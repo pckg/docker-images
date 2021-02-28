@@ -7,7 +7,7 @@ RUN apk add --repository http://dl-cdn.alpinelinux.org/alpine/edge/community \
 	&& curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
 	&& echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list \
 	&& apk update \
-	&& apk add mysql-client postgresql-client apache2 libapache2-mod-php php7.4 php7.4-curl php7.4-intl php7.4-xml php7.4-mbstring php7.4-zip php7.4-mysql php7.4-pgsql php7.4-cli php-amqplib php-ssh2 php7.4-zmq php7.4-imap php7.4-redis php7.4-bcmath php7.4-gd php7.4-bz2 php7.4-soap php7.4-dev wget xvfb git zip unzip g++ build-essential nodejs yarn python \
+	&& apk add mysql-client postgresql-client apache2 libapache2-mod-php php7.4 php7.4-curl php7.4-intl php7.4-xml php7.4-mbstring php7.4-zip php7.4-mysql php7.4-pgsql php7.4-cli php-amqplib php-ssh2 php7.4-zmq php7.4-imap php7.4-redis php7.4-bcmath php7.4-gd php7.4-bz2 php7.4-soap php7.4-dev wget xvfb git zip unzip g++ build-essential nodejs yarn python2 \
 	&& sudo update-alternatives --set php /usr/bin/php7.4 \
 	&& cp /usr/local/pckg-utils/external/etc_apache2_apache2.conf /etc/apache2/apache2.conf \
 	&& cp /usr/local/pckg-utils/external/000-default.conf /etc/apache2/sites-enabled/000-default.conf \

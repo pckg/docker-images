@@ -1,2 +1,2 @@
 apt-get -y update
-apt-get install -y python
+apt-get install -y python2

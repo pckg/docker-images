@@ -17,15 +17,20 @@ export LANG=C
 export LANG
 
 # chown storage when existent
+echo "Chowning"
 [ -d "/var/www/html/storage" ] && chown -R www-data:www-data /var/www/html/storage
 
+echo "Creating apache run dir"
 mkdir -p /var/run/apache2
 
 # enable redis session
+echo "Enabling redis session handler"
 echo "session.save_handler = redis" >> /etc/php/7.4/fpm/php.ini
 echo "session.save_path = \"tcp://${REDIS_HOST##/cache-server-}:6379?auth="${REDIS_PASS}"\"" >> /etc/php/7.4/fpm/php.ini
 
+echo "Starting php"
 service php7.4-fpm start
 
+echo "Starting apache"
 /usr/sbin/apache2 -D FOREGROUND
 #/bin/bash
