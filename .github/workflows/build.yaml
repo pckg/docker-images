@@ -314,7 +314,7 @@ jobs:
 
   build-go-puppeteer:
     name: Build PHP Go Puppeteer
-    needs: [ build-base, build-apache ]
+    needs: [ build-base, build-go ]
     runs-on: ubuntu-latest
     timeout-minutes: 20
     strategy:
@@ -346,7 +346,7 @@ jobs:
 
   build-go-supervisor:
     name: Build PHP Go Supervisor
-    needs: [ build-base, build-apache ]
+    needs: [ build-base, build-go ]
     runs-on: ubuntu-latest
     timeout-minutes: 20
     strategy:
