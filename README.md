@@ -32,6 +32,11 @@ Apache 2.4 with PHP 7.4.
 
 Apache 2.4 with PHP 7.4 FPM.
 
+Env variables:
+
+- `REDIS_HOST` & `REDIS_PORT` - hostname and port to which PHP will store sessions
+- `REDIS_PASS` - password used to authenticate with Redis
+
 ### Apache FPM Snappy (schtr4jh/pckg:apache-fpm-alpine-snappy)
 
 *(non-alpine Ubuntu image)
@@ -42,15 +47,27 @@ Apache 2.4 with PHP 7.4 FPM and Snappy extension.
 
 PHP 7.4
 
-### Sendmail (schtr4jh/pckg:sendmail-php)
+Env variables:
+
+- `JOB` (required) - PHP script available in `/var/www/html/`
+
+### PHP Sendmail (schtr4jh/pckg:sendmail-php)
 
 PHP 7.4 with `sendmail` and `opendkim`.
+
+Env variables:
+
+- `DOMAIN` - hostname domain for DKIM and SPF
 
 ### GO (schtr4jh/pckg:php-go-alpine)
 
 *(non-alpine Ubuntu image)
 
 PHP 7.4 with `golang`.
+
+Env variables:
+
+- `JOB` (required) - GO script available in `/var/www/html/`
 
 ### GO supervisor (schtr4jh/pckg:php-go-supervisor-alpine)
 
@@ -64,9 +81,19 @@ PHP 7.4 with `golang` and `supervisord`.
 
 Includes `node`, `yarn`, `composer`, `webpack`, `webpack-cli`, `g++`, `zip`, `unzip`, `git`, `wget`, and `python2`.
 
+Mount points:
+
+- `/home/developer/developer.ovpn` - mount `.ovpn` file and connect to OpenVPN server
+- `/root/.ssh/id_rsa` & `/root/.ssh/id_rsa.pub` - mount to allow SSH for GIT
+- `/root/.composer/auth.json` - mount to share credentials for Composer
+
+Env variables:
+
+- `PCKG_EMAIL` & `PCKG_NAME` - set GIT email and name
+
 ### Services (schtr4jh/pckg:services)
 
-Includes MySQL, PostgreSQL, Redis and RabbitMQ servers.
+Includes `MySQL`, `PostgreSQL`, `Redis` and `RabbitMQ` servers.
 
 # Tests
 

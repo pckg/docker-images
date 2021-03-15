@@ -1,0 +1,18 @@
+FROM schtr4jh/pckg:php-go-alpine
+MAINTAINER schtr4jh@schtr4jh.net
+
+# add utils so we can optimize a few things
+COPY utils /usr/local/pckg-utils/
+#RUN cp -R utils /usr/local/pckg-utils
+
+# node
+RUN sh /usr/local/pckg-utils/installNode.sh
+
+# puppeteer
+RUN sh /usr/local/pckg-utils/installPuppeteer.sh
+
+# change workdir for a developer
+WORKDIR /var/www/html/
+
+COPY docker-entrypoint-php-go-supervisord.sh /
+ENTRYPOINT ["sh", "/docker-entrypoint-php-go-supervisord.sh"]

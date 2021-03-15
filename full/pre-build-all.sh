@@ -26,6 +26,10 @@ echo "\n\nPHP go (supervisord)"
 php build.php php-go-supervisord
 php build.php php-go-supervisord alpine
 
+echo "\n\nPHP go (puppeteer)"
+php build.php php-go-puppeteer
+php build.php php-go-puppeteer alpine
+
 echo "\n\nBeanstalkd"
 php build.php beanstalkd
 php build.php beanstalkd alpine
