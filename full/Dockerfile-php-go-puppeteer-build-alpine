@@ -11,5 +11,5 @@ RUN curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash - \
 	&& rm -rf /var/lib/apt/lists/* \
 	&& rm -rf /usr/local/pckg-utils
 WORKDIR /var/www/html/
-COPY docker-entrypoint-php-go-supervisord.sh /
-ENTRYPOINT ["sh", "/docker-entrypoint-php-go-supervisord.sh"]
+COPY docker-entrypoint-php-go-puppeteer.sh /
+ENTRYPOINT ["sh", "/docker-entrypoint-php-go-puppeteer.sh"]
