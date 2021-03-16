@@ -14,5 +14,5 @@ RUN sh /usr/local/pckg-utils/installPuppeteer.sh
 # change workdir for a developer
 WORKDIR /var/www/html/
 
-COPY docker-entrypoint-php-go-supervisord.sh /
-ENTRYPOINT ["sh", "/docker-entrypoint-php-go-supervisord.sh"]
+COPY docker-entrypoint-php-go-puppeteer.sh /
+ENTRYPOINT ["sh", "/docker-entrypoint-php-go-puppeteer.sh"]

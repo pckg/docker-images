@@ -100,3 +100,20 @@ Includes `MySQL`, `PostgreSQL`, `Redis` and `RabbitMQ` servers.
 Tests are available in `./full/test/` folder.
 
 See `./.github/workflows/build.yaml` for more info about the build process.
+
+# Availability table
+
+| Name              | Image                         | PHP  | Apache     | Cron  | PM    |
+| ----------------- | ----------------------------- | ---- | ---        | ---   | ---   |  
+| Base*             | pckg:base                     |      |            |       |       |
+| Beanstalkd        | pckg:beanstalkd               |      |            |       |       |
+| Apache            | pckg:apache-alpine            |  X   |     X      |       |   X   |
+| Apache FPM        | pckg:apache-fpm-alpine        |  X   |     X      |       |   X   |
+| Apache FPM Snappy | pckg:apache-fpm-alpine-snappy |  X   |     X      |       |   X   |
+| PHP Cron*         | pckg:php-cron                 |  X   |            |   X   |       |
+| Sendmail          | pckg:sendmail-php             |  X   |            |   X   |       |
+| Go*               | pckg:php-go-alpine            |  X   |            |       |       |
+| Go Supervisor     | pckg:php-go-supervisor-alpine |  X   |            |       |       |
+| Go Puppeteer      |                               |  X   |            |       |       |
+| Dev (latest)      | pckg:latest                   |  X   |            |       |   X   |
+| Services          | pckg:services                 |  X   |            |       |   X   |
