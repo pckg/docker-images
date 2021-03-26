@@ -34,5 +34,5 @@ RUN add-apt-repository ppa:ondrej/php \
 	&& rm -rf /var/lib/apt/lists/* \
 	&& rm -rf /usr/local/pckg-utils
 WORKDIR /var/www/html/
-COPY docker-entrypoint-apache-fpm.sh /
-ENTRYPOINT ["sh", "/docker-entrypoint-apache-fpm.sh"]
+COPY docker-entrypoint-apache-fpm8.sh /
+ENTRYPOINT ["sh", "/docker-entrypoint-apache-fpm8.sh"]

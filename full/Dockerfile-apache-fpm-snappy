@@ -21,5 +21,5 @@ RUN sh /usr/local/pckg-utils/installFrontend.sh
 WORKDIR /var/www/html/
 
 # entrypoint
-COPY docker-entrypoint-apache-fpm.sh /
-ENTRYPOINT ["sh", "/docker-entrypoint-apache-fpm.sh"]
+COPY docker-entrypoint-apache-fpm8.sh /
+ENTRYPOINT ["sh", "/docker-entrypoint-apache-fpm8.sh"]
