@@ -12,7 +12,7 @@ RUN sh /usr/local/pckg-utils/installWeb-fpm8.sh
 RUN sh /usr/local/pckg-utils/installWeb-snappy.sh
 
 # copy apache config
-RUN sh /usr/local/pckg-utils/configApache-fpm.sh
+RUN sh /usr/local/pckg-utils/configApache-fpm8.sh
 
 # composer + node + npm + yarn + less + webpack
 RUN sh /usr/local/pckg-utils/installFrontend.sh
