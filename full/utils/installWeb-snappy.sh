@@ -1,4 +1,4 @@
-apt-get install -y php7.4-dev
+apt-get install -y php-dev
 PREVDIR=$PWD
 cd /tmp/
 git clone --recursive --depth=1 https://github.com/kjdev/php-ext-snappy.git
@@ -7,5 +7,5 @@ phpize
 ./configure
 make
 make install
-echo "extension=snappy" >> /etc/php/7.4/cli/php.ini
+echo "extension=snappy" >> /etc/php/8.0/cli/php.ini
 cd $PREVDIR

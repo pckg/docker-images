@@ -7,7 +7,7 @@ RUN apk add --repository http://dl-cdn.alpinelinux.org/alpine/edge/community \
 	&& curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
 	&& echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list \
 	&& apk update \
-	&& apk add mysql-client postgresql-client apache2 libapache2-mod-fcgid php php-fpm php-curl php-intl php-xml php-mbstring php-zip php-mysql php-pgsql php-cli php-amqplib php-ssh2 php-zmq php-imap php-redis php-bcmath php-gd php-bz2 php-soap php-dev wget xvfb git zip unzip php7.4-dev g++ build-essential nodejs yarn python2 \
+	&& apk add mysql-client postgresql-client apache2 libapache2-mod-fcgid php php-fpm php-curl php-intl php-xml php-mbstring php-zip php-mysql php-pgsql php-cli php-amqplib php-ssh2 php-zmq php-imap php-redis php-bcmath php-gd php-bz2 php-soap php-dev wget xvfb git zip unzip g++ build-essential nodejs yarn python2 \
 	&& PREVDIR=$PWD \
 	&& cd /tmp/ \
 	&& git clone --recursive --depth=1 https://github.com/kjdev/php-ext-snappy.git \
@@ -16,7 +16,7 @@ RUN apk add --repository http://dl-cdn.alpinelinux.org/alpine/edge/community \
 	&& ./configure \
 	&& make \
 	&& make install \
-	&& echo "extension=snappy" >> /etc/php/7.4/cli/php.ini \
+	&& echo "extension=snappy" >> /etc/php/8.0/cli/php.ini \
 	&& cd $PREVDIR \
 	&& cp /usr/local/pckg-utils/external/etc_apache2_apache2-fpm.conf /etc/apache2/apache2.conf \
 	&& cp /usr/local/pckg-utils/external/000-default-fpm.conf /etc/apache2/sites-enabled/000-default.conf \
