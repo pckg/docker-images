@@ -106,7 +106,7 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        php-versions: [ '7.4' ]
+        php-versions: [ '8.0' ]
     env:
       IMAGE_TAG: registry.hub.docker.com/schtr4jh/pckg:apache-fpm-alpine-snappy
     steps:
@@ -119,7 +119,7 @@ jobs:
         run: "cd full && docker build -t $IMAGE_TAG -f Dockerfile-apache-fpm-snappy-build ."
 
       - name: Test
-        run: "cd full && bash test-build-image.sh $IMAGE_TAG apache-fpm-alpine -apache-fpm"
+        run: "cd full && bash test-build-image.sh $IMAGE_TAG apache-fpm-alpine -apache-fpm8"
 
       - name: Dump DO Registry auth
         env:

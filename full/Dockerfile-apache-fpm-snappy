@@ -6,7 +6,7 @@ COPY utils /usr/local/pckg-utils/
 #RUN cp -R utils /usr/local/pckg-utils
 
 # worker = php + apache + mysql
-RUN sh /usr/local/pckg-utils/installWeb-fpm.sh
+RUN sh /usr/local/pckg-utils/installWeb-fpm8.sh
 
 # install ext-php-snappy
 RUN sh /usr/local/pckg-utils/installWeb-snappy.sh
