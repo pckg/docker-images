@@ -29,7 +29,7 @@ echo "session.save_handler = redis" >> /etc/php/8.0/fpm/php.ini
 echo "session.save_path = \"tcp://${REDIS_HOST##/cache-server-}:6379?auth="${REDIS_PASS}"\"" >> /etc/php/8.0/fpm/php.ini
 
 echo "Starting php"
-service php-fpm start
+service php8.0-fpm start
 
 echo "Starting apache"
 /usr/sbin/apache2 -D FOREGROUND

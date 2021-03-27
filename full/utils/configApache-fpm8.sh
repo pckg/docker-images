@@ -7,4 +7,4 @@ cp /usr/local/pckg-utils/external/apache-selfsigned.key /etc/ssl/private/apache-
 
 # enable apache modules
 a2enmod expires headers rewrite ssl proxy_fcgi
-a2enconf php-fpm
+a2enconf php8.0-fpm

@@ -52,7 +52,7 @@ jobs:
       #- uses: satackey/action-docker-layer-caching@v0.0.11
 
       - name: Build
-        run: "cd full && docker build -t $IMAGE_TAG -f Dockerfile-apache-build ."
+        run: "cd full && docker pull schtr4jh/pckg:base && docker build -t $IMAGE_TAG -f Dockerfile-apache-build ."
 
       - name: Test
         run: "cd full && bash test-build-image.sh $IMAGE_TAG apache-alpine -apache"
@@ -84,7 +84,7 @@ jobs:
       #- uses: satackey/action-docker-layer-caching@v0.0.11
 
       - name: Build
-        run: "cd full && docker build -t $IMAGE_TAG -f Dockerfile-apache-fpm-build ."
+        run: "cd full && docker pull schtr4jh/pckg:base && docker build -t $IMAGE_TAG -f Dockerfile-apache-fpm-build ."
 
       - name: Test
         run: "cd full && bash test-build-image.sh $IMAGE_TAG apache-fpm-alpine -apache-fpm"
@@ -116,7 +116,7 @@ jobs:
       #- uses: satackey/action-docker-layer-caching@v0.0.11
 
       - name: Build
-        run: "cd full && docker build -t $IMAGE_TAG -f Dockerfile-apache-fpm-snappy-build ."
+        run: "cd full && docker pull schtr4jh/pckg:base && docker build -t $IMAGE_TAG -f Dockerfile-apache-fpm-snappy-build ."
 
       - name: Test
         run: "cd full && bash test-build-image.sh $IMAGE_TAG apache-fpm-alpine -apache-fpm8"
@@ -148,7 +148,7 @@ jobs:
       #- uses: satackey/action-docker-layer-caching@v0.0.11
 
       - name: Build
-        run: "cd full && docker build -t $IMAGE_TAG -f Dockerfile-beanstalkd-build ."
+        run: "cd full && docker pull schtr4jh/pckg:base && docker build -t $IMAGE_TAG -f Dockerfile-beanstalkd-build ."
 
       - name: Test
         run: "cd full && bash test-build-image.sh $IMAGE_TAG beanstalkd-alpine -beanstalkd"
@@ -234,7 +234,7 @@ jobs:
       #- uses: satackey/action-docker-layer-caching@v0.0.11
 
       - name: Build
-        run: "cd full && docker build -t $IMAGE_TAG -f Dockerfile-sendmail-php-build ."
+        run: "cd full && docker pull schtr4jh/pckg:base && docker build -t $IMAGE_TAG -f Dockerfile-sendmail-php-build ."
 
       - name: Test
         run: "cd full && bash test-build-image.sh $IMAGE_TAG sendmail-php -sendmail-php"
@@ -266,7 +266,7 @@ jobs:
       #- uses: satackey/action-docker-layer-caching@v0.0.11
 
       - name: Build
-        run: "cd full && docker build -t $IMAGE_TAG -f Dockerfile-php-cron-build ."
+        run: "cd full && docker pull schtr4jh/pckg:base && docker build -t $IMAGE_TAG -f Dockerfile-php-cron-build ."
 
       - name: Test
         run: "cd full && bash test-build-image.sh $IMAGE_TAG php-cron -php-cron"
@@ -298,7 +298,7 @@ jobs:
       #- uses: satackey/action-docker-layer-caching@v0.0.11
 
       - name: Build
-        run: "cd full && docker build -t $IMAGE_TAG -f Dockerfile-php-go-build ."
+        run: "cd full && docker pull schtr4jh/pckg:base && docker build -t $IMAGE_TAG -f Dockerfile-php-go-build ."
 
       - name: Test
         run: "cd full && bash test-build-image.sh $IMAGE_TAG php-go-alpine -php-go"
@@ -394,7 +394,7 @@ jobs:
       #- uses: satackey/action-docker-layer-caching@v0.0.11
 
       - name: Build
-        run: "cd full && docker build -t $IMAGE_TAG -f Dockerfile-build ."
+        run: "cd full && docker pull schtr4jh/pckg:base && docker build -t $IMAGE_TAG -f Dockerfile-build ."
 
       - name: Test
         run: "cd full && bash test-build-image.sh $IMAGE_TAG latest \"\""
@@ -426,7 +426,7 @@ jobs:
       #- uses: satackey/action-docker-layer-caching@v0.0.11
 
       - name: Build
-        run: "cd full && docker build -t $IMAGE_TAG -f Dockerfile-services-build ."
+        run: "cd full && docker pull schtr4jh/pckg:base && docker build -t $IMAGE_TAG -f Dockerfile-services-build ."
 
       - name: Test
         run: "cd full && bash test-build-image.sh $IMAGE_TAG services"
