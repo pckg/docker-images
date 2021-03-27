@@ -12,7 +12,7 @@ matchCommandWithOutput () {
   PHP=$(echo $OUTPUT | grep "$2" -c)
   echo $PHP
 
-  [ "$PHP" != "1" ] && echo "$3" && exit 1
+  [ "$PHP" != "1" ] && echo "$3" && echo "Expected $2" && exit 1
 }
 
 matchCommandWithOutput "php -v" "PHP 8.0." "Missing or invalid PHP version"

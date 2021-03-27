@@ -119,7 +119,7 @@ jobs:
         run: "cd full && docker pull schtr4jh/pckg:base && docker build -t $IMAGE_TAG -f Dockerfile-apache-fpm-snappy-build ."
 
       - name: Test
-        run: "cd full && bash test-build-image.sh $IMAGE_TAG apache-fpm-alpine -apache-fpm8"
+        run: "cd full && bash test-build-image.sh $IMAGE_TAG apache-fpm8-alpine -apache-fpm8"
 
       - name: Dump DO Registry auth
         env:
