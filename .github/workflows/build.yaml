@@ -333,7 +333,7 @@ jobs:
         run: "cd full && docker pull schtr4jh/pckg:php-go-alpine && docker build -t $IMAGE_TAG -f Dockerfile-php-go-puppeteer-build ."
 
       - name: Test
-        run: "cd full && bash test-build-image.sh $IMAGE_TAG php-go-puppeteer-alpine -php-go-supervisord"
+        run: "cd full && bash test-build-image.sh $IMAGE_TAG php-go-puppeteer-alpine -php-go-puppeteer"
 
       - name: Dump DO Registry auth
         env:
