@@ -1,4 +1,4 @@
-FROM alpine
+FROM ubuntu:focal-20210416
 MAINTAINER schtr4jh@schtr4jh.net
 RUN apk update \
 	&& apk add sudo curl tzdata openssl ca-certificates \
