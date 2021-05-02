@@ -1,4 +1,4 @@
-apt-get install -y php-dev
+apt-get install -y php8.0-dev
 PREVDIR=$PWD
 cd /tmp/
 git clone --recursive --depth=1 https://github.com/kjdev/php-ext-snappy.git
