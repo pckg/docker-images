@@ -1,1 +1,0 @@
-zip -D -r build.zip comms.json build/

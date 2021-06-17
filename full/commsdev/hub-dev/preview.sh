@@ -1,1 +1,0 @@
-webpack serve --host=0.0.0.0 --config=../webpack.serve.js --env SHARE_VENDOR=$1 --env SHARE_TYPE=$2 --env SHARE=$3
