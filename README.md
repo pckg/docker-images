@@ -37,11 +37,17 @@ Env variables:
 - `REDIS_HOST` & `REDIS_PORT` - hostname and port to which PHP will store sessions
 - `REDIS_PASS` - password used to authenticate with Redis
 
-### Apache FPM Snappy (schtr4jh/pckg:apache-fpm-alpine-snappy)
+### Apache FPM Snappy (schtr4jh/pckg:apache-fpm-alpine-snappy7)
 
 *(non-alpine Ubuntu image)
 
 Apache 2.4 with PHP 7.4 FPM and Snappy extension.
+
+### Apache FPM Snappy (schtr4jh/pckg:apache-fpm-alpine-snappy)
+
+*(non-alpine Ubuntu image)
+
+Apache 2.4 with PHP 8 FPM and Snappy extension.
 
 ### PHP (schtr4jh/pckg:php-cron)
 
@@ -103,17 +109,18 @@ See `./.github/workflows/build.yaml` for more info about the build process.
 
 # Availability table
 
-| Name              | Image                         | PHP  | Apache     | Cron  | PM    |
-| ----------------- | ----------------------------- | ---- | ---        | ---   | ---   |  
-| Base*             | pckg:base                     |      |            |       |       |
-| Beanstalkd        | pckg:beanstalkd               |      |            |       |       |
-| Apache            | pckg:apache-alpine            |  X   |     X      |       |   X   |
-| Apache FPM        | pckg:apache-fpm-alpine        |  X   |     X      |       |   X   |
-| Apache FPM Snappy | pckg:apache-fpm-alpine-snappy |  X   |     X      |       |   X   |
-| PHP Cron*         | pckg:php-cron                 |  X   |            |   X   |       |
-| Sendmail          | pckg:sendmail-php             |  X   |            |   X   |       |
-| Go*               | pckg:php-go-alpine            |  X   |            |       |       |
-| Go Supervisor     | pckg:php-go-supervisor-alpine |  X   |            |       |       |
-| Go Puppeteer      |                               |  X   |            |       |       |
-| Dev (latest)      | pckg:latest                   |  X   |            |       |   X   |
-| Services          | pckg:services                 |  X   |            |       |   X   |
+| Name               | Image                         | PHP    | Apache     | Cron  | PM    |
+| ------------------ | ----------------------------- | ------ | ---        | ---   | ---   |  
+| Base*              | pckg:base                     |        |            |       |       |
+| Beanstalkd         | pckg:beanstalkd               |        |            |       |       |
+| Apache             | pckg:apache-alpine            |  X     |     X      |       |   X   |
+| Apache FPM         | pckg:apache-fpm-alpine        |  X     |     X      |       |   X   |
+| Apache FPM Snappy  | pckg:apache-fpm-alpine-snappy |  X (8) |     X      |       |   X   |
+| Apache FPM Snappy7 | pckg:apache-fpm-alpine-snappy |  X (7) |     X      |       |   X   |
+| PHP Cron*          | pckg:php-cron                 |  X     |            |   X   |       |
+| Sendmail           | pckg:sendmail-php             |  X     |            |   X   |       |
+| Go*                | pckg:php-go-alpine            |  X     |            |       |       |
+| Go Supervisor      | pckg:php-go-supervisor-alpine |  X     |            |       |       |
+| Go Puppeteer       |                               |  X     |            |       |       |
+| Dev (latest)       | pckg:latest                   |  X     |            |       |   X   |
+| Services           | pckg:services                 |  X     |            |       |   X   |
