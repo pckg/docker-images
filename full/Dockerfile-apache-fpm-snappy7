@@ -9,7 +9,7 @@ COPY utils /usr/local/pckg-utils/
 RUN sh /usr/local/pckg-utils/installWeb-fpm.sh
 
 # install ext-php-snappy
-RUN sh /usr/local/pckg-utils/installWeb-snappy.sh
+RUN sh /usr/local/pckg-utils/installWeb-snappy7.sh
 
 # copy apache config
 RUN sh /usr/local/pckg-utils/configApache-fpm.sh
