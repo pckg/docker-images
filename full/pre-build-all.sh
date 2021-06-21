@@ -10,6 +10,10 @@ echo "\n\nApache FPM snappy"
 php build.php apache-fpm-snappy
 php build.php apache-fpm-snappy alpine
 
+echo "\n\nApache FPM snappy7"
+php build.php apache-fpm-snappy7
+php build.php apache-fpm-snappy7 alpine
+
 echo "\n\nApache"
 php build.php apache
 php build.php apache alpine
