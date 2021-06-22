@@ -1,4 +1,4 @@
-FROM ubuntu:20.04
+FROM ubuntu:groovy-20210416
 MAINTAINER schtr4jh@schtr4jh.net
 
 RUN wget https://github.com/ethersphere/bee-clef/releases/download/v0.4.1/bee-clef_0.4.1_amd64.deb
