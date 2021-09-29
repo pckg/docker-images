@@ -1,4 +1,4 @@
-FROM ubuntu:focal-20210416
+FROM ubuntu:latest
 MAINTAINER schtr4jh@schtr4jh.net
 RUN apt-get -y update \
 	&& apt-get install -y locales software-properties-common sudo curl apt-transport-https apt-utils tzdata openssl ca-certificates gnupg-agent \
