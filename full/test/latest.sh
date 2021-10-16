@@ -23,8 +23,8 @@ matchCommandWithOutput "npm --version", "6.14." "Missing or invalid npm version"
 matchCommandWithOutput "yarn --version" "1.22." "Missing or invalid yarn version"
 matchCommandWithOutput "composer --version" "Composer version 2." "Missing or invalid composer"
 
-matchCommandWithOutput "webpack --version" "webpack 5." "Missing or invalid webpack"
-matchCommandWithOutput "webpack --version" "webpack-cli 4." "Missing or invalid webpack-cli"
+matchCommandWithOutput "webpack --version" "webpack: 5." "Missing or invalid webpack"
+matchCommandWithOutput "webpack --version" "webpack-cli: 4." "Missing or invalid webpack-cli"
 matchCommandWithOutput "lessc --version" "lessc 4." "Missing or invalid less"
 
 #matchCommandWithOutput "redis-server --version" "Redis server v=5." "Missing or invalid redis server"
