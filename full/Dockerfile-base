@@ -1,5 +1,4 @@
-# FROM ubuntu:20.04
-FROM ubuntu:focal-20210416
+FROM ubuntu:20.04
 MAINTAINER schtr4jh@schtr4jh.net
 
 # Update system, install common

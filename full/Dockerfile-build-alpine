@@ -23,7 +23,7 @@ RUN apk add --repository http://dl-cdn.alpinelinux.org/alpine/edge/community \
 	&& mv composer.phar /usr/local/bin/composer \
 	&& npm install -g npm@6 less webpack webpack-cli \
 	&& wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh || true \
-	&& useradd -ms /bin/bash developer \
+	&& useradd -ms /bin/bash developer -u 1000 \
 	&& adduser developer sudo \
 	&& usermod -G developer www-data \
 	&& usermod -a -G www-data developer \
