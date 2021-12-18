@@ -6,10 +6,10 @@ COPY utils /usr/local/pckg-utils/
 #RUN cp -R utils /usr/local/pckg-utils
 
 # worker = php + apache + mysql
-RUN sh /usr/local/pckg-utils/installWeb-fpm81.sh
+RUN sh /usr/local/pckg-utils/installWeb-fpm-81.sh
 
 # copy apache config
-RUN sh /usr/local/pckg-utils/configApache-fpm81.sh
+RUN sh /usr/local/pckg-utils/configApache-fpm-81.sh
 
 # composer + node + npm + yarn + less + webpack
 RUN sh /usr/local/pckg-utils/installFrontend.sh
@@ -18,5 +18,5 @@ RUN sh /usr/local/pckg-utils/installFrontend.sh
 WORKDIR /var/www/html/
 
 # entrypoint
-COPY docker-entrypoint-apache-fpm81.sh /
-ENTRYPOINT ["sh", "/docker-entrypoint-apache-fpm81.sh"]
+COPY docker-entrypoint-apache-fpm-81.sh /
+ENTRYPOINT ["sh", "/docker-entrypoint-apache-fpm-81.sh"]
