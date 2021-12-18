@@ -2,6 +2,10 @@ echo "\n\nBase"
 php build.php base
 php build.php base alpine
 
+echo "\n\nApache FPM 8.1"
+php build.php apache-fpm-81
+php build.php apache-fpm-81 alpine
+
 echo "\n\nApache FPM"
 php build.php apache-fpm
 php build.php apache-fpm alpine

@@ -36,7 +36,7 @@ jobs:
 
   build-apache:
     name: Build Apache
-    needs: [ build-base ]
+    needs: [ build-base, build-apache-fpm81 ]
     runs-on: ubuntu-latest
     timeout-minutes: 20
     strategy:
@@ -152,6 +152,38 @@ jobs:
 
       - name: Test
         run: "cd full && bash test-build-image.sh $IMAGE_TAG apache-fpm8-alpine -apache-fpm8"
+
+      - name: Dump DO Registry auth
+        env:
+          DOCKER_HUB_AUTH_TOKEN: ${{ secrets.DOCKER_HUB_AUTH_TOKEN }}
+          DOCKER_HUB_USER: ${{ secrets.DOCKER_HUB_USER }}
+        run: echo $DOCKER_HUB_AUTH_TOKEN | docker login registry.hub.docker.com --username $DOCKER_HUB_USER --password-stdin
+
+      - name: Push
+        run: "docker push $IMAGE_TAG"
+
+  build-apache-fpm81:
+    name: Build Apache FPM Snappy
+    needs: [ build-base ]
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: true
+      matrix:
+        php-versions: [ '8.1' ]
+    env:
+      IMAGE_TAG: registry.hub.docker.com/schtr4jh/pckg:apache-fpm81-alpine
+    steps:
+
+      - uses: actions/checkout@v2
+
+      #- uses: satackey/action-docker-layer-caching@v0.0.11
+
+      - name: Build
+        run: "cd full && docker pull schtr4jh/pckg:base && docker build -t $IMAGE_TAG -f Dockerfile-apache-fpm81-build ."
+
+      - name: Test
+        run: "cd full && bash test-build-image.sh $IMAGE_TAG apache-fpm81-alpine -apache-fpm81"
 
       - name: Dump DO Registry auth
         env:
