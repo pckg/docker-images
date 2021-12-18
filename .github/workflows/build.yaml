@@ -163,7 +163,7 @@ jobs:
         run: "docker push $IMAGE_TAG"
 
   build-apache-fpm-81:
-    name: Build Apache FPM Snappy
+    name: Build Apache FPM 8.1
     needs: [ build-base ]
     runs-on: ubuntu-latest
     timeout-minutes: 20
@@ -183,7 +183,7 @@ jobs:
         run: "cd full && docker pull schtr4jh/pckg:base && docker build -t $IMAGE_TAG -f Dockerfile-apache-fpm-81-build ."
 
       - name: Test
-        run: "cd full && bash test-build-image.sh $IMAGE_TAG apache-fpm-81-alpine -apache-fpm81"
+        run: "cd full && bash test-build-image.sh $IMAGE_TAG apache-fpm-81-alpine -apache-fpm-81"
 
       - name: Dump DO Registry auth
         env:
