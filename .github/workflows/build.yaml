@@ -151,7 +151,39 @@ jobs:
         run: "cd full && docker pull schtr4jh/pckg:base && docker build -t $IMAGE_TAG -f Dockerfile-apache-fpm-snappy-build ."
 
       - name: Test
-        run: "cd full && bash test-build-image.sh $IMAGE_TAG apache-fpm8-alpine -apache-fpm8"
+        run: "cd full && bash test-build-image.sh $IMAGE_TAG apache-fpm-80-alpine -apache-fpm-80"
+
+      - name: Dump DO Registry auth
+        env:
+          DOCKER_HUB_AUTH_TOKEN: ${{ secrets.DOCKER_HUB_AUTH_TOKEN }}
+          DOCKER_HUB_USER: ${{ secrets.DOCKER_HUB_USER }}
+        run: echo $DOCKER_HUB_AUTH_TOKEN | docker login registry.hub.docker.com --username $DOCKER_HUB_USER --password-stdin
+
+      - name: Push
+        run: "docker push $IMAGE_TAG"
+
+  build-apache-fpm-80:
+    name: Build Apache FPM 8.0
+    needs: [ build-base ]
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: true
+      matrix:
+        php-versions: [ '8.0' ]
+    env:
+      IMAGE_TAG: registry.hub.docker.com/schtr4jh/pckg:apache-fpm-80-alpine
+    steps:
+
+      - uses: actions/checkout@v2
+
+      #- uses: satackey/action-docker-layer-caching@v0.0.11
+
+      - name: Build
+        run: "cd full && docker pull schtr4jh/pckg:base && docker build -t $IMAGE_TAG -f Dockerfile-apache-fpm-80-build ."
+
+      - name: Test
+        run: "cd full && bash test-build-image.sh $IMAGE_TAG apache-fpm-80-alpine -apache-fpm-80"
 
       - name: Dump DO Registry auth
         env:

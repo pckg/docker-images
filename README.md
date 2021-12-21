@@ -49,7 +49,7 @@ Apache 2.4 with PHP 7.4 FPM and Snappy extension.
 
 Apache 2.4 with PHP 8 FPM and Snappy extension.
 
-### Apache FPM Snappy 8.1 (schtr4jh/pckg:apache-fpm81-alpine)
+### Apache FPM Snappy 8.1 (schtr4jh/pckg:apache-fpm-81-alpine)
 
 *(non-alpine Ubuntu image)
 
@@ -115,20 +115,20 @@ See `./.github/workflows/build.yaml` for more info about the build process.
 
 # Availability table
 
-| Name               | Image                           | PHP     | Apache     | Cron  | PM    |
-|--------------------|---------------------------------|---------| ---        | ---   | ---   |  
-| Base*              | pckg:base                       |         |            |       |       |
-| Beanstalkd         | pckg:beanstalkd                 |         |            |       |       |
-| Apache             | pckg:apache-alpine              | X       |     X      |       |   X   |
-| Apache FPM         | pckg:apache-fpm-alpine          | X       |     X      |       |   X   |
-| Apache FPM Snappy  | pckg:apache-fpm-alpine-snappy   | X (8)   |     X      |       |   X   |
-| Apache FPM Snappy7 | pckg:apache-fpm-alpine-snappy   | X (7)   |     X      |       |   X   |
-| Apache FPM8.1      | pckg:apache-fpm81-alpine-snappy | X (8.1) |     X      |       |   X   |
-| PHP Cron*          | pckg:php-cron                   | X       |            |   X   |       |
-| Sendmail           | pckg:sendmail-php               | X       |            |   X   |       |
-| Go*                | pckg:php-go-alpine              | X       |            |       |       |
-| Go Supervisor      | pckg:php-go-supervisor-alpine   | X       |            |       |       |
-| Go Puppeteer       |                                 | X       |            |       |       |
-| Dev (latest)       | pckg:latest                     | X       |            |       |   X   |
-| Services           | pckg:services                   | X       |            |       |   X   |
+| Name               | Image                            | PHP     | Apache     | Cron  | PM    |
+|--------------------|----------------------------------|---------| ---        | ---   | ---   |  
+| Base*              | pckg:base                        |         |            |       |       |
+| Beanstalkd         | pckg:beanstalkd                  |         |            |       |       |
+| Apache             | pckg:apache-alpine               | X       |     X      |       |   X   |
+| Apache FPM         | pckg:apache-fpm-alpine           | X       |     X      |       |   X   |
+| Apache FPM Snappy  | pckg:apache-fpm-80-alpine-snappy | X (8.0) |     X      |       |   X   |
+| Apache FPM Snappy7 | pckg:apache-fpm-alpine-snappy    | X (7.4) |     X      |       |   X   |
+| Apache FPM8.1      | pckg:apache-fpm-81-alpine-snappy | X (8.1) |     X      |       |   X   |
+| PHP Cron*          | pckg:php-cron                    | X       |            |   X   |       |
+| Sendmail           | pckg:sendmail-php                | X       |            |   X   |       |
+| Go*                | pckg:php-go-alpine               | X       |            |       |       |
+| Go Supervisor      | pckg:php-go-supervisor-alpine    | X       |            |       |       |
+| Go Puppeteer       |                                  | X       |            |       |       |
+| Dev (latest)       | pckg:latest                      | X       |            |       |   X   |
+| Services           | pckg:services                    | X       |            |       |   X   |
 

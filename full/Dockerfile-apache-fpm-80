@@ -8,9 +8,6 @@ COPY utils /usr/local/pckg-utils/
 # worker = php + apache + mysql
 RUN sh /usr/local/pckg-utils/installWeb-fpm-80.sh
 
-# install ext-php-snappy
-RUN sh /usr/local/pckg-utils/installWeb-snappy.sh
-
 # copy apache config
 RUN sh /usr/local/pckg-utils/configApache-fpm-80.sh
 
