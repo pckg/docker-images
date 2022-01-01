@@ -16,7 +16,7 @@ if ! docker inspect "$dockerImage" &> /dev/null; then
 fi
 
 # running tests
-OUTPUT=$(docker run -v $PWD/test/$2.sh:/docker-entrypoint$3.sh $dockerImage)
+OUTPUT=$(docker run -v $PWD/test/$2.sh:/docker-entrypoint$3.sh -v $PWD/test:/var/www/html/www $dockerImage)
 
 echo $OUTPUT
 
