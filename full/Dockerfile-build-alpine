@@ -21,7 +21,7 @@ RUN apk add --repository http://dl-cdn.alpinelinux.org/alpine/edge/community \
 	&& php composer-setup.php \
 	&& php -r "unlink('composer-setup.php');" \
 	&& mv composer.phar /usr/local/bin/composer \
-	&& npm install -g npm@6 less webpack webpack-cli \
+	&& npm install -g npm@latest less webpack webpack-cli \
 	&& wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh || true \
 	&& useradd -ms /bin/bash developer -u 1000 \
 	&& adduser developer sudo \
