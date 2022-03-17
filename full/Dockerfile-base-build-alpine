@@ -1,4 +1,4 @@
-FROM alpine
+FROM alpine:3.15
 MAINTAINER schtr4jh@schtr4jh.net
 RUN apk update \
 	&& apk add sudo curl tzdata openssl ca-certificates \
