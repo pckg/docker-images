@@ -1,0 +1,19 @@
+FROM schtr4jh/pckg:base
+MAINTAINER schtr4jh@schtr4jh.net
+
+# add utils so we can optimize a few things
+COPY utils /usr/local/pckg-utils/
+#RUN cp -R utils /usr/local/pckg-utils
+
+# worker = nginx
+RUN sh /usr/local/pckg-utils/installNginx.sh
+
+# copy apache config
+RUN sh /usr/local/pckg-utils/configNginx.sh
+
+# change workdir for a developer
+WORKDIR /var/www/html/
+
+# entrypoint
+COPY docker-entrypoint-nginx.sh /
+ENTRYPOINT ["sh", "/docker-entrypoint-nginx.sh"]
