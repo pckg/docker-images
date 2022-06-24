@@ -28,6 +28,10 @@ echo "Enabling redis session handler"
 echo "session.save_handler = redis" >> /etc/php/8.0/fpm/php.ini
 echo "session.save_path = \"tcp://${REDIS_HOST##/cache-server-}:6379?auth="${REDIS_PASS}"\"" >> /etc/php/8.0/fpm/php.ini
 
+# choose ssl (http+https) or non-ssl (http) environment
+# wait, we mounted some of those files, so we don't really want to override them?
+[[ -n $NO_SSL_ENV ]] && echo "Using non-SSL / http-only environment" && mv /etc/apache2/sites-available/000-default-http.conf /etc/apache2/sites-enabled/000-default.conf
+
 echo "Starting php"
 service php8.0-fpm start
 
