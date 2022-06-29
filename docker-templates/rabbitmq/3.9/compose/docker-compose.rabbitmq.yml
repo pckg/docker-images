@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+
+  rabbitmq:
+    image: rabbitmq:3.9-management-alpine
+    env_file: ../env/.env.rabbit.docker
+    deploy:
+      restart_policy:
+        condition: on-failure
+
+    environment:
+      VOLUME_QUEUE: ${VOLUME_QUEUE?:err}
+    volumes:
+
+      - "${VOLUME_QUEUE}:/var/lib/rabbitmq"
+
+x-impero:
+  provides:
+    rabbitmq-config:
+      env_file: ../env/.env.rabbitmq.provided

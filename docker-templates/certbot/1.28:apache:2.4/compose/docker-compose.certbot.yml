@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+
+  certbot:
+    image: certbot/certbot:1.28
+    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew --webroot --webroot-path /var/www/certbot; sleep 12h & wait $${!}; done;'"
+
+    environment:
+      VOLUME_CERTBOT: ${VOLUME_CERTBOT?:err}
+      VOLUME_CERTBOT_WWW: ${VOLUME_CERTBOT_WWW?:err}
+    volumes:
+      - "${VOLUME_CERTBOT}:/etc/letsencrypt"
+      - "${VOLUME_CERTBOT_WWW}:/var/www/certbot"
+    deploy:
+      restart_policy:
+        condition: on-failure
+
+x-impero:
+  provides:
+    haproxy-entrypoint:
+      environment:
+        VOLUME_CERTBOT: ${VOLUME_CERTBOT?:err}
+        CONFIG_DOMAIN: ${CONFIG_DOMAIN?:err}
+      volumes:
+        - "${VOLUME_CERTBOT}/live/${CONFIG_DOMAIN}/fullchain.pem:/etc/haproxy/server.crt"
+        - "${VOLUME_CERTBOT}/live/${CONFIG_DOMAIN}/privkey.pem:/etc/haproxy/server.key"
+        - "${VOLUME_CERTBOT}/live/${CONFIG_DOMAIN}/merged.pem:/etc/haproxy/server.merged.crt"
+  requires:
+    web-service:
+      environment:
+        VOLUME_CERTBOT_WWW: ${VOLUME_CERTBOT_WWW?:err}
+      volumes:
+        - "${VOLUME_CERTBOT_WWW}:/var/www/certbot"
+

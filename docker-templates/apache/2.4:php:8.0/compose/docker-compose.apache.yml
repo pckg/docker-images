@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+
+  web:
+    environment:
+      PHP_VERSION: ${PHP_VERSION?:80}
+    image: "schtr4jh/pckg:apache-fpm-${PHP_VERSION}-alpine"
+    env_file: ../env/.env.web.docker
+
+    deploy:
+      endpoint_mode: dnsrr
+      replicas: 3
+      update_config:
+        parallelism: 1
+        delay: 5s
+        order: start-first
+      restart_policy:
+        condition: on-failure

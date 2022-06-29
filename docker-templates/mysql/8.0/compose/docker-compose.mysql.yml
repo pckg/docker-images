@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+
+  mysql:
+    image: mysql:8
+    env_file: ./env/.env.database.docker
+
+    command: [ "mysqld", "--character-set-server=utf8mb4", "--collation-server=utf8mb4_general_ci", "--skip-character-set-client-handshake" ]
+
+    environment:
+      VOLUME_DATABASE: ${VOLUME_DATABASE?:err}
+
+    volumes:
+      - "${VOLUME_DATABASE}:/var/lib/mysql"
+
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+
+      update_config:
+        parallelism: 1
+        delay: 10s
+        monitor: 60s
+        failure_action: pause
+        order: stop-first
+
+      placement:
+        max_replicas_per_node: 1
+
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost" ]
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+    stop_grace_period: 1m30s
+
+    sysctls:
+      net.core.somaxconn: 1024
+      net.ipv4.tcp_syncookies: 0
+
+x-impero:
+  provides:
+    mysql-config:
+      env_file: ../env/.env.mysql.provided

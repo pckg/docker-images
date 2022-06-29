@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+
+  haproxy:
+    environment:
+      VOLUME_HAPROXY: ${VOLUME_HAPROXY?:err}
+      VOLUME_HAPROXY_RUN: ${VOLUME_HAPROXY_RUN?:err}
+    image: haproxy:2.5-alpine
+
+    ports:
+      - target: 80
+        published: 80
+        mode: host
+        protocol: tcp
+      - target: 443
+        published: 443
+        mode: host
+        protocol: tcp
+
+    volumes:
+
+      - "${VOLUME_HAPROXY}:/usr/local/etc/haproxy/haproxy.cfg"
+
+      - "${VOLUME_HAPROXY_RUN}:/run/haproxy/"
+
+
+    dns:
+      - "127.0.0.11"
+
+    deploy:
+      mode: global
+      restart_policy:
+        condition: on-failure
+    #healthcheck:
+    #  #disable: true
+    #  test: [ "CMD", "curl", "-f", "http://localhost" ]
+    #  interval: 1m30s
+    #  timeout: 10s
+    #  retries: 3
+    #  start_period: 40s
