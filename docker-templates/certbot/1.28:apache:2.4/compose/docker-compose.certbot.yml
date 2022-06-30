@@ -18,7 +18,7 @@ services:
 
 x-impero:
   provides:
-    haproxy-entrypoint:
+    haproxy-domain: # single entrypoint
       environment:
         VOLUME_CERTBOT: ${VOLUME_CERTBOT?:err}
         CONFIG_DOMAIN: ${CONFIG_DOMAIN?:err}
@@ -26,6 +26,12 @@ x-impero:
         - "${VOLUME_CERTBOT}/live/${CONFIG_DOMAIN}/fullchain.pem:/etc/haproxy/server.crt"
         - "${VOLUME_CERTBOT}/live/${CONFIG_DOMAIN}/privkey.pem:/etc/haproxy/server.key"
         - "${VOLUME_CERTBOT}/live/${CONFIG_DOMAIN}/merged.pem:/etc/haproxy/server.merged.crt"
+    haproxy-domains: # multi entrypoint
+      environment:
+        VOLUME_CERTBOT: ${VOLUME_CERTBOT?:err}
+        CONFIG_DOMAIN: ${CONFIG_DOMAIN?:err}
+      volumes:
+        - "${VOLUME_CERTBOT}/live/ssl:/etc/haproxy/ssl"
   requires:
     web-service:
       environment:
