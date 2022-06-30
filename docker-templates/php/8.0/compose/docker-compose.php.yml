@@ -3,14 +3,12 @@ version: '3.8'
 services:
 
   php:
-    image: "schtr4jh/pckg:php-${PHP_VERSION}-alpine"
+    image: "schtr4jh/pckg:php-80-alpine"
     environment:
-      PHP_VERSION: ${PHP_VERSION?:80}
       JOB: ${JOB?:err}
 
   cron:
-    image: "schtr4jh/pckg:php-${PHP_VERSION}-alpine"
+    image: "schtr4jh/pckg:php-80-alpine"
     environment:
-      PHP_VERSION: ${PHP_VERSION?:80}
       CRON: ${CRON?:err}
 
