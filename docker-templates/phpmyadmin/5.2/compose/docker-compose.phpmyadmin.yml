@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+
+  phpmyadmin:
+    image: phpmyadmin:5.2
+
+    deploy:
+      endpoint_mode: dnsrr
+      replicas: 3
+      update_config:
+        parallelism: 1
+        delay: 5s
+        order: start-first
+      restart_policy:
+        condition: on-failure
