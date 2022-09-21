@@ -18,9 +18,9 @@ matchCommandWithOutput () {
 matchCommandWithOutput "php -v" "PHP 8.0." "Missing or invalid PHP version"
 [ -f /usr/bin/phpize ] || (echo "No phpize or missing php-dev" && exit 1)
 
-matchCommandWithOutput "node --version" "v16.15." "Missing or invalid node version"
-matchCommandWithOutput "npm --version", "6.14." "Missing or invalid npm version"
-matchCommandWithOutput "yarn --version" "1.22." "Missing or invalid yarn version"
+matchCommandWithOutput "node --version" "v16." "Missing or invalid node version"
+matchCommandWithOutput "npm --version", "6." "Missing or invalid npm version"
+matchCommandWithOutput "yarn --version" "1." "Missing or invalid yarn version"
 matchCommandWithOutput "composer --version" "Composer version 2." "Missing or invalid composer"
 
 matchCommandWithOutput "webpack --version" "webpack: 5." "Missing or invalid webpack"
