@@ -7,7 +7,7 @@ services:
 
     deploy:
       endpoint_mode: dnsrr
-      replicas: 3
+      replicas: 1
       update_config:
         parallelism: 1
         delay: 5s

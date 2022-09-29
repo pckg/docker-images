@@ -4,7 +4,7 @@ services:
 
   web:
     image: "schtr4jh/pckg:apache-fpm-80-alpine"
-    env_file: ../env/.env.web.docker
+    #env_file: ../env/.env.web.docker
 
     deploy:
       endpoint_mode: dnsrr

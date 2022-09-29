@@ -29,20 +29,22 @@ services:
       placement:
         max_replicas_per_node: 1
 
-    healthcheck:
-      test: [ "CMD", "curl", "-f", "http://localhost" ]
-      interval: 1m30s
-      timeout: 10s
-      retries: 3
-      start_period: 40s
+#    healthcheck:
+#      test: [ "CMD", "curl", "-f", "http://localhost" ]
+#      interval: 1m30s
+#      timeout: 10s
+#      retries: 3
+#      start_period: 40s
 
     stop_grace_period: 1m30s
 
     sysctls:
       net.core.somaxconn: 1024
-      net.ipv4.tcp_syncookies: 0
+      #net.ipv4.tcp_syncookies: 0
 
 x-impero:
   provides:
     mysql-config:
+      env_vars:
+        - MYSQL_ROOT_PASSWORD
       env_file: ../env/.env.mysql.provided
