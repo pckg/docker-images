@@ -21,7 +21,7 @@ RUN add-apt-repository ppa:ondrej/php \
 	&& php composer-setup.php \
 	&& php -r "unlink('composer-setup.php');" \
 	&& mv composer.phar /usr/local/bin/composer \
-	&& npm install -g npm@6 less webpack webpack-cli \
+	&& npm install -g npm@6 less webpack@5 webpack-cli@4 \
 	&& rm -rf /var/lib/apt/lists/* \
 	&& rm -rf /usr/local/pckg-utils
 WORKDIR /var/www/html/
