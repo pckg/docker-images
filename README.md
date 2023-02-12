@@ -55,6 +55,12 @@ Apache 2.4 with PHP 8 FPM and Snappy extension.
 
 Apache 2.4 with PHP 8.1 FPM.
 
+### Apache FPM 8.2 (schtr4jh/pckg:apache-fpm-82-alpine)
+
+*(non-alpine Ubuntu image)
+
+Apache 2.4 with PHP 8.2 FPM.
+
 ### PHP (schtr4jh/pckg:php-cron)
 
 PHP 7.4
@@ -121,9 +127,10 @@ See `./.github/workflows/build.yaml` for more info about the build process.
 | Beanstalkd         | pckg:beanstalkd                  |         |            |       |       |
 | Apache             | pckg:apache-alpine               | X       |     X      |       |   X   |
 | Apache FPM         | pckg:apache-fpm-alpine           | X       |     X      |       |   X   |
-| Apache FPM Snappy  | pckg:apache-fpm-80-alpine-snappy | X (8.0) |     X      |       |   X   |
 | Apache FPM Snappy7 | pckg:apache-fpm-alpine-snappy    | X (7.4) |     X      |       |   X   |
+| Apache FPM Snappy  | pckg:apache-fpm-80-alpine-snappy | X (8.0) |     X      |       |   X   |
 | Apache FPM8.1      | pckg:apache-fpm-81-alpine-snappy | X (8.1) |     X      |       |   X   |
+| Apache FPM8.2      | pckg:apache-fpm-82-alpine-snappy | X (8.2) |     X      |       |   X   |
 | PHP Cron*          | pckg:php-cron                    | X       |            |   X   |       |
 | Sendmail           | pckg:sendmail-php                | X       |            |   X   |       |
 | Go*                | pckg:php-go-alpine               | X       |            |       |       |

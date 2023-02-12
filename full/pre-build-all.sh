@@ -14,6 +14,10 @@ echo "\n\nApache FPM 8.1"
 php build.php apache-fpm-81
 php build.php apache-fpm-81 alpine
 
+echo "\n\nApache FPM 8.2"
+php build.php apache-fpm-82
+php build.php apache-fpm-82 alpine
+
 echo "\n\nApache FPM snappy 8.0"
 php build.php apache-fpm-snappy
 php build.php apache-fpm-snappy alpine
