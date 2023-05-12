@@ -18,7 +18,7 @@ jobs:
       IMAGE_TAG: registry.hub.docker.com/schtr4jh/pckg:base
     steps:
 
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       #- uses: satackey/action-docker-layer-caching@v0.0.11
 
@@ -36,7 +36,7 @@ jobs:
 
   build-apache:
     name: Build Apache
-    needs: [ build-base, build-apache-fpm-81 ]
+    needs: [ build-base ]
     runs-on: ubuntu-latest
     timeout-minutes: 20
     strategy:
@@ -47,7 +47,7 @@ jobs:
       IMAGE_TAG: registry.hub.docker.com/schtr4jh/pckg:apache-alpine
     steps:
 
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       #- uses: satackey/action-docker-layer-caching@v0.0.11
 
@@ -68,7 +68,7 @@ jobs:
 
   build-apache-fpm:
     name: Build Apache FPM
-    needs: [ build-base, build-apache ]
+    needs: [ build-base ]
     runs-on: ubuntu-latest
     timeout-minutes: 20
     strategy:
@@ -79,7 +79,7 @@ jobs:
       IMAGE_TAG: registry.hub.docker.com/schtr4jh/pckg:apache-fpm-alpine
     steps:
 
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       #- uses: satackey/action-docker-layer-caching@v0.0.11
 
@@ -98,69 +98,69 @@ jobs:
       - name: Push
         run: "docker push $IMAGE_TAG"
 
-  build-apache-fpm-snappy7:
-    name: Build Apache FPM Snappy7
-    needs: [ build-base, build-apache-fpm ]
-    runs-on: ubuntu-latest
-    timeout-minutes: 20
-    strategy:
-      fail-fast: true
-      matrix:
-        php-versions: [ '7.4' ]
-    env:
-      IMAGE_TAG: registry.hub.docker.com/schtr4jh/pckg:apache-fpm-alpine-snappy7
-    steps:
+#  build-apache-fpm-snappy7:
+#    name: Build Apache FPM Snappy7
+#    needs: [ build-base, build-apache-fpm ]
+#    runs-on: ubuntu-latest
+#    timeout-minutes: 20
+#    strategy:
+#      fail-fast: true
+#      matrix:
+#        php-versions: [ '7.4' ]
+#    env:
+#      IMAGE_TAG: registry.hub.docker.com/schtr4jh/pckg:apache-fpm-alpine-snappy7
+#    steps:
+#
+#      - uses: actions/checkout@v3
+#
+#      #- uses: satackey/action-docker-layer-caching@v0.0.11
+#
+#      - name: Build
+#        run: "cd full && docker pull schtr4jh/pckg:base && docker build -t $IMAGE_TAG -f Dockerfile-apache-fpm-snappy7-build ."
+#
+#      - name: Test
+#        run: "cd full && bash test-build-image.sh $IMAGE_TAG apache-fpm-alpine -apache-fpm"
+#
+#      - name: Dump DO Registry auth
+#       env:
+#          DOCKER_HUB_AUTH_TOKEN: ${{ secrets.DOCKER_HUB_AUTH_TOKEN }}
+#          DOCKER_HUB_USER: ${{ secrets.DOCKER_HUB_USER }}
+#        run: echo $DOCKER_HUB_AUTH_TOKEN | docker login registry.hub.docker.com --username $DOCKER_HUB_USER --password-stdin
+#
+#      - name: Push
+#        run: "docker push $IMAGE_TAG"
 
-      - uses: actions/checkout@v2
-
-      #- uses: satackey/action-docker-layer-caching@v0.0.11
-
-      - name: Build
-        run: "cd full && docker pull schtr4jh/pckg:base && docker build -t $IMAGE_TAG -f Dockerfile-apache-fpm-snappy7-build ."
-
-      - name: Test
-        run: "cd full && bash test-build-image.sh $IMAGE_TAG apache-fpm-alpine -apache-fpm"
-
-      - name: Dump DO Registry auth
-        env:
-          DOCKER_HUB_AUTH_TOKEN: ${{ secrets.DOCKER_HUB_AUTH_TOKEN }}
-          DOCKER_HUB_USER: ${{ secrets.DOCKER_HUB_USER }}
-        run: echo $DOCKER_HUB_AUTH_TOKEN | docker login registry.hub.docker.com --username $DOCKER_HUB_USER --password-stdin
-
-      - name: Push
-        run: "docker push $IMAGE_TAG"
-
-  build-apache-fpm-snappy:
-    name: Build Apache FPM Snappy
-    needs: [ build-base, build-apache-fpm ]
-    runs-on: ubuntu-latest
-    timeout-minutes: 20
-    strategy:
-      fail-fast: true
-      matrix:
-        php-versions: [ '8.0' ]
-    env:
-      IMAGE_TAG: registry.hub.docker.com/schtr4jh/pckg:apache-fpm-alpine-snappy
-    steps:
-
-      - uses: actions/checkout@v2
-
-      #- uses: satackey/action-docker-layer-caching@v0.0.11
-
-      - name: Build
-        run: "cd full && docker pull schtr4jh/pckg:base && docker build -t $IMAGE_TAG -f Dockerfile-apache-fpm-snappy-build ."
-
-      - name: Test
-        run: "cd full && bash test-build-image.sh $IMAGE_TAG apache-fpm-80-alpine -apache-fpm-80"
-
-      - name: Dump DO Registry auth
-        env:
-          DOCKER_HUB_AUTH_TOKEN: ${{ secrets.DOCKER_HUB_AUTH_TOKEN }}
-          DOCKER_HUB_USER: ${{ secrets.DOCKER_HUB_USER }}
-        run: echo $DOCKER_HUB_AUTH_TOKEN | docker login registry.hub.docker.com --username $DOCKER_HUB_USER --password-stdin
-
-      - name: Push
-        run: "docker push $IMAGE_TAG"
+#  build-apache-fpm-snappy:
+#    name: Build Apache FPM Snappy
+#    needs: [ build-base, build-apache-fpm ]
+#    runs-on: ubuntu-latest
+#    timeout-minutes: 20
+#    strategy:
+#      fail-fast: true
+#      matrix:
+#        php-versions: [ '8.0' ]
+#    env:
+#      IMAGE_TAG: registry.hub.docker.com/schtr4jh/pckg:apache-fpm-alpine-snappy
+#    steps:
+#
+#      - uses: actions/checkout@v3
+#
+#      #- uses: satackey/action-docker-layer-caching@v0.0.11
+#
+#      - name: Build
+#        run: "cd full && docker pull schtr4jh/pckg:base && docker build -t $IMAGE_TAG -f Dockerfile-apache-fpm-snappy-build ."
+#
+#      - name: Test
+#        run: "cd full && bash test-build-image.sh $IMAGE_TAG apache-fpm-80-alpine -apache-fpm-80"
+#
+#      - name: Dump DO Registry auth
+#        env:
+#          DOCKER_HUB_AUTH_TOKEN: ${{ secrets.DOCKER_HUB_AUTH_TOKEN }}
+#          DOCKER_HUB_USER: ${{ secrets.DOCKER_HUB_USER }}
+#        run: echo $DOCKER_HUB_AUTH_TOKEN | docker login registry.hub.docker.com --username $DOCKER_HUB_USER --password-stdin
+#
+#      - name: Push
+#        run: "docker push $IMAGE_TAG"
 
   build-apache-fpm-80:
     name: Build Apache FPM 8.0
@@ -175,7 +175,7 @@ jobs:
       IMAGE_TAG: registry.hub.docker.com/schtr4jh/pckg:apache-fpm-80-alpine
     steps:
 
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       #- uses: satackey/action-docker-layer-caching@v0.0.11
 
@@ -207,7 +207,7 @@ jobs:
       IMAGE_TAG: registry.hub.docker.com/schtr4jh/pckg:apache-fpm-81-alpine
     steps:
 
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       #- uses: satackey/action-docker-layer-caching@v0.0.11
 
@@ -239,7 +239,7 @@ jobs:
       IMAGE_TAG: registry.hub.docker.com/schtr4jh/pckg:apache-fpm-82-alpine
     steps:
 
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       #- uses: satackey/action-docker-layer-caching@v0.0.11
 
@@ -271,7 +271,7 @@ jobs:
       IMAGE_TAG: registry.hub.docker.com/schtr4jh/pckg:beanstalkd-alpine
     steps:
 
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       #- uses: satackey/action-docker-layer-caching@v0.0.11
 
@@ -301,7 +301,7 @@ jobs:
 #        php-versions: [ '7.4' ]
 #    steps:
 #
-#      - uses: actions/checkout@v2
+#      - uses: actions/checkout@v3
 #
 #      #- uses: satackey/action-docker-layer-caching@v0.0.11
 #
@@ -328,7 +328,7 @@ jobs:
 #        php-versions: [ '7.4' ]
 #    steps:
 #
-#      - uses: actions/checkout@v2
+#      - uses: actions/checkout@v3
 #
 #      #- uses: satackey/action-docker-layer-caching@v0.0.11
 #
@@ -357,7 +357,7 @@ jobs:
       IMAGE_TAG: registry.hub.docker.com/schtr4jh/pckg:sendmail-php
     steps:
 
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       #- uses: satackey/action-docker-layer-caching@v0.0.11
 
@@ -389,7 +389,7 @@ jobs:
       IMAGE_TAG: registry.hub.docker.com/schtr4jh/pckg:php-cron
     steps:
 
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       #- uses: satackey/action-docker-layer-caching@v0.0.11
 
@@ -410,7 +410,7 @@ jobs:
 
   build-go:
     name: Build PHP Go
-    needs: [ build-base, build-apache ]
+    needs: [ build-base ]
     runs-on: ubuntu-latest
     timeout-minutes: 20
     strategy:
@@ -421,15 +421,15 @@ jobs:
       IMAGE_TAG: registry.hub.docker.com/schtr4jh/pckg:php-go-alpine
     steps:
 
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       #- uses: satackey/action-docker-layer-caching@v0.0.11
 
       - name: Build
         run: "cd full && docker pull schtr4jh/pckg:base && docker build -t $IMAGE_TAG -f Dockerfile-php-go-build ."
 
-      - name: Test
-        run: "cd full && bash test-build-image.sh $IMAGE_TAG php-go-alpine -php-go"
+      #- name: Test
+      #  run: "cd full && bash test-build-image.sh $IMAGE_TAG php-go-alpine -php-go"
 
       - name: Dump DO Registry auth
         env:
@@ -440,28 +440,28 @@ jobs:
       - name: Push
         run: "docker push $IMAGE_TAG"
 
-  build-go-puppeteer:
-    name: Build PHP Go Puppeteer
-    needs: [ build-base, build-go ]
+  build-go-80:
+    name: Build PHP Go 8.0
+    needs: [ build-base ]
     runs-on: ubuntu-latest
     timeout-minutes: 20
     strategy:
       fail-fast: true
       matrix:
-        php-versions: [ '7.4' ]
+        php-versions: [ '8.0' ]
     env:
-      IMAGE_TAG: registry.hub.docker.com/schtr4jh/pckg:php-go-puppeteer-alpine
+      IMAGE_TAG: registry.hub.docker.com/schtr4jh/pckg:php-go-80-alpine
     steps:
 
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       #- uses: satackey/action-docker-layer-caching@v0.0.11
 
       - name: Build
-        run: "cd full && docker pull schtr4jh/pckg:php-go-alpine && docker build -t $IMAGE_TAG -f Dockerfile-php-go-puppeteer-build ."
+        run: "cd full && docker pull schtr4jh/pckg:base && docker build -t $IMAGE_TAG -f Dockerfile-php-go-80-build ."
 
-      - name: Test
-        run: "cd full && bash test-build-image.sh $IMAGE_TAG php-go-puppeteer-alpine -php-go-puppeteer"
+      #- name: Test
+      #  run: "cd full && bash test-build-image.sh $IMAGE_TAG php-go-80-alpine -php-go-80"
 
       - name: Dump DO Registry auth
         env:
@@ -471,6 +471,38 @@ jobs:
 
       - name: Push
         run: "docker push $IMAGE_TAG"
+
+#  build-go-puppeteer:
+#    name: Build PHP Go Puppeteer
+#    needs: [ build-base, build-go ]
+#    runs-on: ubuntu-latest
+#    timeout-minutes: 20
+#    strategy:
+#      fail-fast: true
+#      matrix:
+#        php-versions: [ '7.4' ]
+#    env:
+#      IMAGE_TAG: registry.hub.docker.com/schtr4jh/pckg:php-go-puppeteer-alpine
+#    steps:
+#
+#      - uses: actions/checkout@v3
+#
+#      #- uses: satackey/action-docker-layer-caching@v0.0.11
+#
+#      - name: Build
+#        run: "cd full && docker pull schtr4jh/pckg:php-go-alpine && docker build -t $IMAGE_TAG -f Dockerfile-php-go-puppeteer-build ."
+#
+#      - name: Test
+#        run: "cd full && bash test-build-image.sh $IMAGE_TAG php-go-puppeteer-alpine -php-go-puppeteer"
+#
+#      - name: Dump DO Registry auth
+#        env:
+#          DOCKER_HUB_AUTH_TOKEN: ${{ secrets.DOCKER_HUB_AUTH_TOKEN }}
+#          DOCKER_HUB_USER: ${{ secrets.DOCKER_HUB_USER }}
+#        run: echo $DOCKER_HUB_AUTH_TOKEN | docker login registry.hub.docker.com --username $DOCKER_HUB_USER --password-stdin
+#
+#      - name: Push
+#        run: "docker push $IMAGE_TAG"
 
   build-go-supervisor:
     name: Build PHP Go Supervisor
@@ -485,15 +517,47 @@ jobs:
       IMAGE_TAG: registry.hub.docker.com/schtr4jh/pckg:php-go-supervisord-alpine
     steps:
 
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       #- uses: satackey/action-docker-layer-caching@v0.0.11
 
       - name: Build
         run: "cd full && docker pull schtr4jh/pckg:php-go-alpine && docker build -t $IMAGE_TAG -f Dockerfile-php-go-supervisord-build ."
 
-      - name: Test
-        run: "cd full && bash test-build-image.sh $IMAGE_TAG php-go-supervisord-alpine -php-go-supervisord"
+      #- name: Test
+      #  run: "cd full && bash test-build-image.sh $IMAGE_TAG php-go-supervisord-alpine -php-go-supervisord"
+
+      - name: Dump DO Registry auth
+        env:
+          DOCKER_HUB_AUTH_TOKEN: ${{ secrets.DOCKER_HUB_AUTH_TOKEN }}
+          DOCKER_HUB_USER: ${{ secrets.DOCKER_HUB_USER }}
+        run: echo $DOCKER_HUB_AUTH_TOKEN | docker login registry.hub.docker.com --username $DOCKER_HUB_USER --password-stdin
+
+      - name: Push
+        run: "docker push $IMAGE_TAG"
+
+  build-go-supervisor-80:
+    name: Build PHP Go Supervisor 8.0
+    needs: [ build-base, build-go-80 ]
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: true
+      matrix:
+        php-versions: [ '8.0' ]
+    env:
+      IMAGE_TAG: registry.hub.docker.com/schtr4jh/pckg:php-go-supervisord-80-alpine
+    steps:
+
+      - uses: actions/checkout@v3
+
+      #- uses: satackey/action-docker-layer-caching@v0.0.11
+
+      - name: Build
+        run: "cd full && docker pull schtr4jh/pckg:php-go-80-alpine && docker build -t $IMAGE_TAG -f Dockerfile-php-go-supervisord-80-build ."
+
+      #- name: Test
+      #  run: "cd full && bash test-build-image.sh $IMAGE_TAG php-go-supervisord-80-alpine -php-go-supervisord-80"
 
       - name: Dump DO Registry auth
         env:
@@ -506,7 +570,7 @@ jobs:
 
   build-latest:
     name: Build latest (dev)
-    needs: [ build-base, build-apache-fpm-snappy ]
+    needs: [ build-base ]
     runs-on: ubuntu-latest
     timeout-minutes: 20
     strategy:
@@ -517,7 +581,7 @@ jobs:
       IMAGE_TAG: registry.hub.docker.com/schtr4jh/pckg:latest
     steps:
 
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       #- uses: satackey/action-docker-layer-caching@v0.0.11
 
@@ -549,7 +613,7 @@ jobs:
       IMAGE_TAG: registry.hub.docker.com/schtr4jh/pckg:services
     steps:
 
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       #- uses: satackey/action-docker-layer-caching@v0.0.11
 

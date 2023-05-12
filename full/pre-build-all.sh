@@ -34,13 +34,25 @@ echo "\n\nPHP cron"
 php build.php php-cron
 php build.php php-cron alpine
 
+echo "\n\nPHP cron 8.0"
+php build.php php-cron-80
+php build.php php-cron-80 alpine
+
 echo "\n\nPHP go"
 php build.php php-go
 php build.php php-go alpine
 
+echo "\n\nPHP go 8.0"
+php build.php php-go-80
+php build.php php-go-80 alpine
+
 echo "\n\nPHP go (supervisord)"
 php build.php php-go-supervisord
 php build.php php-go-supervisord alpine
+
+echo "\n\nPHP go (supervisord) 8.0"
+php build.php php-go-supervisord-80
+php build.php php-go-supervisord-80 alpine
 
 echo "\n\nPHP go (puppeteer)"
 php build.php php-go-puppeteer

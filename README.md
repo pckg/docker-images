@@ -69,6 +69,14 @@ Env variables:
 
 - `JOB` (required) - PHP script available in `/var/www/html/`
 
+### PHP 8.0 (schtr4jh/pckg:php-cron)
+
+PHP 8.0
+
+Env variables:
+
+- `JOB` (required) - PHP script available in `/var/www/html/`
+
 ### PHP Sendmail (schtr4jh/pckg:sendmail-php)
 
 PHP 7.4 with `sendmail` and `opendkim`.
@@ -87,11 +95,27 @@ Env variables:
 
 - `JOB` (required) - GO script available in `/var/www/html/`
 
+### GO 8.0 (schtr4jh/pckg:php-go--80-alpine)
+
+*(non-alpine Ubuntu image)
+
+PHP 8.0 with `golang`.
+
+Env variables:
+
+- `JOB` (required) - GO script available in `/var/www/html/`
+
 ### GO supervisor (schtr4jh/pckg:php-go-supervisor-alpine)
 
 *(non-alpine Ubuntu image)
 
 PHP 7.4 with `golang` and `supervisord`.
+
+### GO supervisor 8.0 (schtr4jh/pckg:php-go-supervisor-80-alpine)
+
+*(non-alpine Ubuntu image)
+
+PHP 8.0 with `golang` and `supervisord`.
 
 ## Dev
 
@@ -132,9 +156,12 @@ See `./.github/workflows/build.yaml` for more info about the build process.
 | Apache FPM8.1      | pckg:apache-fpm-81-alpine-snappy | X (8.1) |     X      |       |   X   |
 | Apache FPM8.2      | pckg:apache-fpm-82-alpine-snappy | X (8.2) |     X      |       |   X   |
 | PHP Cron*          | pckg:php-cron                    | X       |            |   X   |       |
+| PHP Cron* 8.0      | pckg:php-cron-80                 | X (8.0) |            |   X   |       |
 | Sendmail           | pckg:sendmail-php                | X       |            |   X   |       |
 | Go*                | pckg:php-go-alpine               | X       |            |       |       |
+| Go 8.0             | pckg:php-go-80-alpine            | X (8.0) |            |       |       |
 | Go Supervisor      | pckg:php-go-supervisor-alpine    | X       |            |       |       |
+| Go Supervisor 8.0  | pckg:php-go-supervisor-80-alpine | X (8.0) |            |       |       |
 | Go Puppeteer       |                                  | X       |            |       |       |
 | Dev (latest)       | pckg:latest                      | X       |            |       |   X   |
 | Services           | pckg:services                    | X       |            |       |   X   |

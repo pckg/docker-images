@@ -1,0 +1,10 @@
+FROM schtr4jh/pckg:php-go-80-alpine
+MAINTAINER schtr4jh@schtr4jh.net
+COPY utils /usr/local/pckg-utils/
+RUN apk update \
+	&& apk add supervisor \
+	&& rm -rf /var/lib/apt/lists/* \
+	&& rm -rf /usr/local/pckg-utils
+WORKDIR /var/www/html/
+COPY docker-entrypoint-php-go-supervisord.sh /
+ENTRYPOINT ["sh", "/docker-entrypoint-php-go-supervisord.sh"]

@@ -1,0 +1,16 @@
+FROM schtr4jh/pckg:base-alpine
+MAINTAINER schtr4jh@schtr4jh.net
+COPY utils /usr/local/pckg-utils/
+RUN apk add --repository http://dl-cdn.alpinelinux.org/alpine/edge/community \
+	&& apk update \
+	&& apk add mysql-client postgresql-client php8.0 php8.0-curl php8.0-intl php8.0-xml php8.0-mbstring php8.0-zip php8.0-mysql php8.0-pgsql php8.0-cli php-amqplib php8.0-ssh2 php8.0-zmq php8.0-imap php8.0-redis php8.0-bcmath php8.0-gd php8.0-bz2 php8.0-soap php8.0-dev wget xvfb git zip unzip cron golang golang-go \
+	&& sudo update-alternatives --set php /usr/bin/php8.0 \
+	&& export GOPATH=/var/www/html \
+	&& export GOBIN=$GOPATH/bin \
+	&& PATH=$PATH:$GOPATH:$GOBIN \
+	&& export PATH \
+	&& rm -rf /var/lib/apt/lists/* \
+	&& rm -rf /usr/local/pckg-utils
+WORKDIR /var/www/html/
+COPY docker-entrypoint-php-go.sh /
+ENTRYPOINT ["sh", "/docker-entrypoint-php-go.sh"]
