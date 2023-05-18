@@ -12,5 +12,5 @@ RUN sh /usr/local/pckg-utils/installWeb-cron-80.sh
 WORKDIR /var/www/html/
 
 # entrypoint
-COPY docker-entrypoint-php-cron.sh /
-ENTRYPOINT ["sh", "/docker-entrypoint-php-cron.sh"]
+COPY docker-entrypoint-php-cron-80.sh /
+ENTRYPOINT ["sh", "/docker-entrypoint-php-cron-80.sh"]

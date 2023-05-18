@@ -7,7 +7,7 @@ RUN apk add --repository http://dl-cdn.alpinelinux.org/alpine/edge/community \
 	&& curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
 	&& echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list \
 	&& apk update \
-	&& apk add mysql-client postgresql-client apache2 libapache2-mod-fcgid php8.1 php8.1-fpm php8.1-curl php8.1-intl php8.1-xml php8.1-mbstring php8.1-zip php8.1-mysql php8.1-pgsql php8.1-cli php-amqplib php8.1-ssh2 php8.1-zmq php8.1-imap php8.1-redis php8.1-bcmath php8.1-gd php8.1-bz2 php8.1-soap php8.1-dev wget xvfb git zip unzip g++ build-essential nodejs yarn python2 \
+	&& apk add mysql-client apache2 libapache2-mod-fcgid php8.1 php8.1-fpm php8.1-curl php8.1-intl php8.1-xml php8.1-mbstring php8.1-zip php8.1-mysql php8.1-cli php-amqplib php8.1-ssh2 php8.1-zmq php8.1-imap php8.1-redis php8.1-bcmath php8.1-gd php8.1-bz2 php8.1-soap php8.1-dev wget xvfb git zip unzip g++ build-essential nodejs yarn python2 \
 	&& cp /usr/local/pckg-utils/external/etc_apache2_apache2-fpm.conf /etc/apache2/apache2.conf \
 	&& cp /usr/local/pckg-utils/external/000-default-fpm-81.conf /etc/apache2/sites-enabled/000-default.conf \
 	&& mkdir -p /etc/ssl/private/ \

@@ -69,12 +69,13 @@ Env variables:
 
 - `JOB` (required) - PHP script available in `/var/www/html/`
 
-### PHP 8.0 (schtr4jh/pckg:php-cron)
+### PHP 8.0 (schtr4jh/pckg:php-cron-80)
 
 PHP 8.0
 
 Env variables:
 
+- `EVERY` (required) - `* * * * *`
 - `JOB` (required) - PHP script available in `/var/www/html/`
 
 ### PHP Sendmail (schtr4jh/pckg:sendmail-php)

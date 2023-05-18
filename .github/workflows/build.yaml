@@ -408,6 +408,38 @@ jobs:
       - name: Push
         run: "docker push $IMAGE_TAG"
 
+  build-php-80:
+    name: Build PHP 8.0
+    needs: [ build-base, build-apache ]
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: true
+      matrix:
+        php-versions: [ '8.0' ]
+    env:
+      IMAGE_TAG: registry.hub.docker.com/schtr4jh/pckg:php-cron-80
+    steps:
+
+      - uses: actions/checkout@v3
+
+      #- uses: satackey/action-docker-layer-caching@v0.0.11
+
+      - name: Build
+        run: "cd full && docker pull schtr4jh/pckg:base && docker build -t $IMAGE_TAG -f Dockerfile-php-cron-80-build ."
+
+      #- name: Test
+      #  run: "cd full && bash test-build-image.sh $IMAGE_TAG php-cron-80 -php-cron-80"
+
+      - name: Dump DO Registry auth
+        env:
+          DOCKER_HUB_AUTH_TOKEN: ${{ secrets.DOCKER_HUB_AUTH_TOKEN }}
+          DOCKER_HUB_USER: ${{ secrets.DOCKER_HUB_USER }}
+        run: echo $DOCKER_HUB_AUTH_TOKEN | docker login registry.hub.docker.com --username $DOCKER_HUB_USER --password-stdin
+
+      - name: Push
+        run: "docker push $IMAGE_TAG"
+
   build-go:
     name: Build PHP Go
     needs: [ build-base ]
