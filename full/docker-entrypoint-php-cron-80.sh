@@ -28,4 +28,6 @@ echo "Preparing cron"
 
 # run cron
 echo "Running cron $EVERY $JOB"
-bash -c cron -f
+cron -f
+
+echo "Exiting"
