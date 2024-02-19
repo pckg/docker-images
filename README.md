@@ -43,13 +43,13 @@ Env variables:
 
 Apache 2.4 with PHP 7.4 FPM and Snappy extension.
 
-### Apache FPM Snappy (schtr4jh/pckg:apache-fpm-alpine-snappy)
+### Apache FPM (schtr4jh/pckg:apache-fpm-alpine)
 
 *(non-alpine Ubuntu image)
 
-Apache 2.4 with PHP 8 FPM and Snappy extension.
+Apache 2.4 with PHP 8 FPM.
 
-### Apache FPM Snappy 8.1 (schtr4jh/pckg:apache-fpm-81-alpine)
+### Apache FPM 8.1 (schtr4jh/pckg:apache-fpm-81-alpine)
 
 *(non-alpine Ubuntu image)
 
@@ -60,6 +60,12 @@ Apache 2.4 with PHP 8.1 FPM.
 *(non-alpine Ubuntu image)
 
 Apache 2.4 with PHP 8.2 FPM.
+
+### Apache FPM 8.3 (schtr4jh/pckg:apache-fpm-82-alpine)
+
+*(non-alpine Ubuntu image)
+
+Apache 2.4 with PHP 8.3 FPM.
 
 ### PHP (schtr4jh/pckg:php-cron)
 
@@ -154,8 +160,9 @@ See `./.github/workflows/build.yaml` for more info about the build process.
 | Apache FPM         | pckg:apache-fpm-alpine           | X       |     X      |       |   X   |
 | Apache FPM Snappy7 | pckg:apache-fpm-alpine-snappy    | X (7.4) |     X      |       |   X   |
 | Apache FPM Snappy  | pckg:apache-fpm-80-alpine-snappy | X (8.0) |     X      |       |   X   |
-| Apache FPM8.1      | pckg:apache-fpm-81-alpine-snappy | X (8.1) |     X      |       |   X   |
-| Apache FPM8.2      | pckg:apache-fpm-82-alpine-snappy | X (8.2) |     X      |       |   X   |
+| Apache FPM8.1      | pckg:apache-fpm-81-alpine        | X (8.1) |     X      |       |   X   |
+| Apache FPM8.2      | pckg:apache-fpm-82-alpine        | X (8.2) |     X      |       |   X   |
+| Apache FPM8.3      | pckg:apache-fpm-83-alpine        | X (8.3) |     X      |       |   X   |
 | PHP Cron*          | pckg:php-cron                    | X       |            |   X   |       |
 | PHP Cron* 8.0      | pckg:php-cron-80                 | X (8.0) |            |   X   |       |
 | Sendmail           | pckg:sendmail-php                | X       |            |   X   |       |

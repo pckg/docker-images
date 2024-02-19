@@ -7,14 +7,14 @@ RUN add-apt-repository ppa:ondrej/php \
 	&& curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
 	&& echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list \
 	&& apt-get -y update \
-	&& apt-get install -y mysql-client apache2 libapache2-mod-fcgid php7.4 php7.4-fpm php7.4-curl php7.4-intl php7.4-xml php7.4-mbstring php7.4-zip php7.4-mysql php7.4-cli php-amqplib php7.4-ssh2 php7.4-zmq php7.4-imap php7.4-redis php7.4-bcmath php7.4-gd php7.4-bz2 php7.4-soap php7.4-dev wget xvfb git zip unzip g++ build-essential nodejs yarn python2 \
+	&& apt-get install -y mysql-client apache2 libapache2-mod-fcgid php8.3 php8.3-fpm php8.3-curl php8.3-intl php8.3-xml php8.3-mbstring php8.3-zip php8.3-mysql php8.3-cli php-amqplib php8.3-ssh2 php8.3-zmq php8.3-imap php8.3-redis php8.3-bcmath php8.3-gd php8.3-bz2 php8.3-soap php8.3-dev wget xvfb git zip unzip g++ build-essential nodejs yarn python2 \
 	&& cp /usr/local/pckg-utils/external/etc_apache2_apache2-fpm.conf /etc/apache2/apache2.conf \
-	&& cp /usr/local/pckg-utils/external/000-default-fpm.conf /etc/apache2/sites-enabled/000-default.conf \
+	&& cp /usr/local/pckg-utils/external/000-default-fpm-83.conf /etc/apache2/sites-enabled/000-default.conf \
 	&& mkdir -p /etc/ssl/private/ \
 	&& cp /usr/local/pckg-utils/external/apache-selfsigned.crt /etc/ssl/certs/apache-selfsigned.crt \
 	&& cp /usr/local/pckg-utils/external/apache-selfsigned.key /etc/ssl/private/apache-selfsigned.key \
 	&& a2enmod expires headers rewrite ssl proxy_fcgi \
-	&& a2enconf php7.4-fpm \
+	&& a2enconf php8.3-fpm \
 	&& php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
 	&& php -r "if (hash_file('sha384', 'composer-setup.php') === 'edb40769019ccf227279e3bdd1f5b2e9950eb000c3233ee85148944e555d97be3ea4f40c3c2fe73b22f875385f6a5155') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;" \
 	&& php composer-setup.php \
@@ -24,5 +24,5 @@ RUN add-apt-repository ppa:ondrej/php \
 	&& rm -rf /var/lib/apt/lists/* \
 	&& rm -rf /usr/local/pckg-utils
 WORKDIR /var/www/html/
-COPY docker-entrypoint-apache-fpm.sh /
-ENTRYPOINT ["sh", "/docker-entrypoint-apache-fpm.sh"]
+COPY docker-entrypoint-apache-fpm-82.sh /
+ENTRYPOINT ["sh", "/docker-entrypoint-apache-fpm-83.sh"]

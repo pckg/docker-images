@@ -3,7 +3,7 @@ MAINTAINER schtr4jh@schtr4jh.net
 COPY utils /usr/local/pckg-utils/
 RUN add-apt-repository ppa:ondrej/php \
 	&& add-apt-repository ppa:ondrej/apache2 \
-	&& curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash - \
+	&& curl -sL https://deb.nodesource.com/setup_18.x | sudo -E bash - \
 	&& curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
 	&& echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list \
 	&& apt-get -y update \
@@ -17,11 +17,11 @@ RUN add-apt-repository ppa:ondrej/php \
 	&& a2dismod php7.4 \
 	&& a2enmod expires headers rewrite ssl \
 	&& php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
-	&& php -r "if (hash_file('sha384', 'composer-setup.php') === '55ce33d7678c5a611085589f1f3ddf8b3c52d662cd01d4ba75c0ee0459970c2200a51f492d557530c71c15d8dba01eae') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;" \
+	&& php -r "if (hash_file('sha384', 'composer-setup.php') === 'edb40769019ccf227279e3bdd1f5b2e9950eb000c3233ee85148944e555d97be3ea4f40c3c2fe73b22f875385f6a5155') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;" \
 	&& php composer-setup.php \
 	&& php -r "unlink('composer-setup.php');" \
 	&& mv composer.phar /usr/local/bin/composer \
-	&& npm install -g npm@6 less webpack@5 webpack-cli@4 \
+	&& npm install -g npm@8 less webpack@5 webpack-cli@4 \
 	&& rm -rf /var/lib/apt/lists/* \
 	&& rm -rf /usr/local/pckg-utils
 WORKDIR /var/www/html/

@@ -1,0 +1,22 @@
+FROM schtr4jh/pckg:base
+MAINTAINER schtr4jh@schtr4jh.net
+
+# add utils so we can optimize a few things
+COPY utils /usr/local/pckg-utils/
+#RUN cp -R utils /usr/local/pckg-utils
+
+# worker = php + apache + mysql
+RUN sh /usr/local/pckg-utils/installWeb-fpm-83.sh
+
+# copy apache config
+RUN sh /usr/local/pckg-utils/configApache-fpm-83.sh
+
+# composer + node + npm + yarn + less + webpack
+RUN sh /usr/local/pckg-utils/installFrontend.sh
+
+# change workdir for a developer
+WORKDIR /var/www/html/
+
+# entrypoint
+COPY docker-entrypoint-apache-fpm-82.sh /
+ENTRYPOINT ["sh", "/docker-entrypoint-apache-fpm-83.sh"]

@@ -15,7 +15,7 @@ matchCommandWithOutput () {
   [ "$PHP" != "1" ] && echo "$3" && echo "Expected $2" && exit 1
 }
 
-matchCommandWithOutput "php -v" "PHP 8.2." "Missing or invalid PHP version"
+matchCommandWithOutput "php -v" "PHP 8.3." "Missing or invalid PHP version"
 [ -f /usr/bin/phpize ] || (echo "No phpize or missing php-dev" && exit 1)
 
 matchCommandWithOutput "node --version" "v18." "Missing or invalid node version"
