@@ -18,7 +18,7 @@ jobs:
       IMAGE_TAG: registry.hub.docker.com/schtr4jh/pckg:base
     steps:
 
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       #- uses: satackey/action-docker-layer-caching@v0.0.11
 
@@ -47,7 +47,7 @@ jobs:
       IMAGE_TAG: registry.hub.docker.com/schtr4jh/pckg:apache-alpine
     steps:
 
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       #- uses: satackey/action-docker-layer-caching@v0.0.11
 
@@ -79,7 +79,7 @@ jobs:
       IMAGE_TAG: registry.hub.docker.com/schtr4jh/pckg:apache-fpm-alpine
     steps:
 
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       #- uses: satackey/action-docker-layer-caching@v0.0.11
 
@@ -111,7 +111,7 @@ jobs:
 #      IMAGE_TAG: registry.hub.docker.com/schtr4jh/pckg:apache-fpm-alpine-snappy7
 #    steps:
 #
-#      - uses: actions/checkout@v3
+#      - uses: actions/checkout@v4
 #
 #      #- uses: satackey/action-docker-layer-caching@v0.0.11
 #
@@ -143,7 +143,7 @@ jobs:
 #      IMAGE_TAG: registry.hub.docker.com/schtr4jh/pckg:apache-fpm-alpine-snappy
 #    steps:
 #
-#      - uses: actions/checkout@v3
+#      - uses: actions/checkout@v4
 #
 #      #- uses: satackey/action-docker-layer-caching@v0.0.11
 #
@@ -175,7 +175,7 @@ jobs:
       IMAGE_TAG: registry.hub.docker.com/schtr4jh/pckg:apache-fpm-80-alpine
     steps:
 
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       #- uses: satackey/action-docker-layer-caching@v0.0.11
 
@@ -207,7 +207,7 @@ jobs:
       IMAGE_TAG: registry.hub.docker.com/schtr4jh/pckg:apache-fpm-81-alpine
     steps:
 
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       #- uses: satackey/action-docker-layer-caching@v0.0.11
 
@@ -239,7 +239,7 @@ jobs:
       IMAGE_TAG: registry.hub.docker.com/schtr4jh/pckg:apache-fpm-82-alpine
     steps:
 
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       #- uses: satackey/action-docker-layer-caching@v0.0.11
 
@@ -271,7 +271,7 @@ jobs:
       IMAGE_TAG: registry.hub.docker.com/schtr4jh/pckg:apache-fpm-83-alpine
     steps:
 
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       #- uses: satackey/action-docker-layer-caching@v0.0.11
 
@@ -303,7 +303,7 @@ jobs:
       IMAGE_TAG: registry.hub.docker.com/schtr4jh/pckg:beanstalkd-alpine
     steps:
 
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       #- uses: satackey/action-docker-layer-caching@v0.0.11
 
@@ -333,7 +333,7 @@ jobs:
 #        php-versions: [ '7.4' ]
 #    steps:
 #
-#      - uses: actions/checkout@v3
+#      - uses: actions/checkout@v4
 #
 #      #- uses: satackey/action-docker-layer-caching@v0.0.11
 #
@@ -360,7 +360,7 @@ jobs:
 #        php-versions: [ '7.4' ]
 #    steps:
 #
-#      - uses: actions/checkout@v3
+#      - uses: actions/checkout@v4
 #
 #      #- uses: satackey/action-docker-layer-caching@v0.0.11
 #
@@ -389,7 +389,7 @@ jobs:
       IMAGE_TAG: registry.hub.docker.com/schtr4jh/pckg:sendmail-php
     steps:
 
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       #- uses: satackey/action-docker-layer-caching@v0.0.11
 
@@ -421,7 +421,7 @@ jobs:
       IMAGE_TAG: registry.hub.docker.com/schtr4jh/pckg:php-cron
     steps:
 
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       #- uses: satackey/action-docker-layer-caching@v0.0.11
 
@@ -453,7 +453,7 @@ jobs:
       IMAGE_TAG: registry.hub.docker.com/schtr4jh/pckg:php-cron-80
     steps:
 
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       #- uses: satackey/action-docker-layer-caching@v0.0.11
 
@@ -485,7 +485,7 @@ jobs:
       IMAGE_TAG: registry.hub.docker.com/schtr4jh/pckg:php-go-alpine
     steps:
 
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       #- uses: satackey/action-docker-layer-caching@v0.0.11
 
@@ -517,7 +517,7 @@ jobs:
       IMAGE_TAG: registry.hub.docker.com/schtr4jh/pckg:php-go-80-alpine
     steps:
 
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       #- uses: satackey/action-docker-layer-caching@v0.0.11
 
@@ -549,7 +549,7 @@ jobs:
 #      IMAGE_TAG: registry.hub.docker.com/schtr4jh/pckg:php-go-puppeteer-alpine
 #    steps:
 #
-#      - uses: actions/checkout@v3
+#      - uses: actions/checkout@v4
 #
 #      #- uses: satackey/action-docker-layer-caching@v0.0.11
 #
@@ -581,7 +581,7 @@ jobs:
       IMAGE_TAG: registry.hub.docker.com/schtr4jh/pckg:php-go-supervisord-alpine
     steps:
 
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       #- uses: satackey/action-docker-layer-caching@v0.0.11
 
@@ -613,7 +613,7 @@ jobs:
       IMAGE_TAG: registry.hub.docker.com/schtr4jh/pckg:php-go-supervisord-80-alpine
     steps:
 
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       #- uses: satackey/action-docker-layer-caching@v0.0.11
 
@@ -645,7 +645,7 @@ jobs:
       IMAGE_TAG: registry.hub.docker.com/schtr4jh/pckg:latest
     steps:
 
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       #- uses: satackey/action-docker-layer-caching@v0.0.11
 
@@ -677,7 +677,7 @@ jobs:
       IMAGE_TAG: registry.hub.docker.com/schtr4jh/pckg:services
     steps:
 
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       #- uses: satackey/action-docker-layer-caching@v0.0.11
 
